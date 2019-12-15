@@ -1,0 +1,496 @@
+mysql
+mysql
+#ls                       列出当前工作目录下的所有文件/文件夹的名称
+#ls 路径               列出指定路径下的所有文件/文件夹的名称
+#ls 选项 路径       在列出指定路径下的文件/文件夹的名称，并以指定的格式进行显示
+      选项：
+                -l           表示list，表示以详细列表的形式进行展示
+                -a          表示显示所有的文件/文件夹（包含了隐藏文件/文件夹
+  
+#ls  -lh  路径           显示当前目录下的文件的详细信息
+#cd：                    变更目录
+        . ：                当前目录
+        .. ：               上一级目录
+       ~：                 家目录
+       cd ..：             进入上级目录
+       cd /home        绝对路径
+       cd LeetCode.bishi.Cycle_String             相对路径
+#pwd：                  显示当前路径
+JDBC连接
+driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3306/mytest?serverTimezone=UTC&useSSL=false
+userName=root
+password=123456
+
+mysql
+
+mysql:编码
+在创建表的时候，
+create table tb_books (
+   .... ) default charset = utf8;
+对于已经创建好的表格：
+alter table `tablename` convert to charset utf8;
+
+
+mysql:删除数据之后，id不连续
+在每次执行插入删除之前，执行此语句：
+alter table mybatis.person  AUTO_INCREMENT=1;
+
+问题：‘performance_schema.session_variables’ doesn’t exist：
+mysql -u root -p
+mysql> set @@global.show_compatibility_56=ON;
+
+UNSIGNED：
+五符号化，只显示正数
+
+mysql:插入列
+alter table TABLE_NAME add column NEW_COLUMN_NAME varchar(20) not null after COLUMN_NAME;
+
+mysql:清空表格
+删除：delete from 表名;
+清空数据：truncate table 表名;
+
+检测NULL值不能用 =：
+where userdesc<=>NULL
+或者：where userdesc is NULL
+
+IN的使用，查询集合：
+select * from user where id in (1,3,25,19);
+select * from user where id not in  (1,3,25,19);
+
+                                                        GROUP_CONCAT使用方法
+mysql> select password , group_concat(name) , count(*)  from  employee
+    -> group by password;
++----------+-----------------------  +-----------+
+| password | group_concat(name)    | count(*)  |
++----------+-----------------------  +-----------+
+| 000000    | 刘备,孙尚香,关羽,周仓 |        4       |
++----------+-----------------------  +--------- -+
+LIMIT 使用：
+LIMIT 0 5；从0开始的前五个数据
+
+                                                                                   多表联查
+左外连接：先显示左表，在查询有表中符合查询条件的记录，不符合的以NULL代替
+以左表为主，join后面的表，为右表，即department 是右表，以employee 为主
+SELECT e.* , d.sn dsn , d.name dname
+FROM employee AS e LEFT OUTER JOIN department AS d   （OUTER可以省略）
+ON d.sn=e.department_sn
+WHERE e.sn=#{sn}
+
+                                                                              外键
+os数据库下，news表 和 newCate表
+建表创建外键，constraint为外键起别名，便于操作
+constraint cateId_fk_newCate foreign key(cateId) references news_cate(id)
+动态删除外键
+alter table news drop foreign key cateId_fk_newsCate;
+动态添加外键
+alter table news add foreign key cateId references news_cate(id)
+动态添加外键，并设置级联自动更新，删除，当主表发生delete和update，子表跟随更新
+alter table news add foreign key （cateId）references news_cate (id) on delete  cascade  on update cascade;
+
+                                                                        子查询
+以一张表的查询结果为另一张表的查询条件约束
+select * from emp
+where  depId  in  (select  id  from  dep);
+exists：返回真假，相当于 if 语句
+select * from emp where exists (select depName from dep where id=1);
+
+                                                                 子查询应用
+1.创表的同时通过另外一张表添加数据：将emp表的id和username加入刚建的表user中
+create table user(id int unsigned auto_increment key , username vachar(20) )select id,username from emp;
+2.将 user表 的内容，写入user1表
+insert user1 (username) select username from user
+3.将stu表中的 GDX 用户名，添加到user表中：
+insert user2 set username=(select username from stu where username = GDX)
+4.去掉字段的重复值
+select distinct ( username ) from user2;
+                                                                      联合查询
+1.union同时查询两张表：重复字段自动删除
+select  username  from user1  union  select  username   from  user2
+2.union all 简单合并，重复不会删除
+                                                                     无限极分类表
+
+Spring：
+java.lang.NoClassDefFoundError: org/springframework/beans/factory/config/EmbeddedValueResolver
+1.Spring-beans包未导入
+2.Spring-beans包与其他包的版本不一致
+
+org.springframework.beans.factory.UnsatisfiedDependencyException
+xml配置出了问题，仔细检查
+1.如果使用注解配置 service 层 可能缺少了注解 (@Service)
+2.注解正确的情况下：检查扫描包路径是否正确。（Ctrl+鼠标左键）检查
+。。。
+Tomcat启动失败org.apache.catalina.LifecycleException：
+在web层添加依赖：
+<dependency>
+        <groupId>commons-logging</groupId>
+        <artifactId>commons-logging</artifactId>
+        <version>1.2</version>
+</dependency>
+
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [spring/spring-dao.xml]: Invocation of init method failed;
+很有可能是SqlSession的mapper路径classpath：/..
+必须有/
+JDBC连接
+driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3306/mytest?serverTimezone=UTC&useSSL=false
+userName=root
+password=123456
+
+
+mysql:编码
+在创建表的时候，
+create table tb_books (
+   .... ) default charset = utf8;
+对于已经创建好的表格：
+alter table `tablename` convert to charset utf8;
+
+
+mysql:删除数据之后，id不连续
+在每次执行插入删除之前，执行此语句：
+alter table mybatis.person  AUTO_INCREMENT=1;
+
+问题：‘performance_schema.session_variables’ doesn’t exist：
+mysql -u root -p
+mysql> set @@global.show_compatibility_56=ON;
+
+UNSIGNED：
+五符号化，只显示正数
+
+mysql:插入列
+alter table TABLE_NAME add column NEW_COLUMN_NAME varchar(20) not null after COLUMN_NAME;
+
+mysql:清空表格
+删除：delete from 表名;
+清空数据：truncate table 表名;
+
+检测NULL值不能用 =：
+where userdesc<=>NULL
+或者：where userdesc is NULL
+
+IN的使用，查询集合：
+select * from user where id in (1,3,25,19);
+select * from user where id not in  (1,3,25,19);
+
+                                                        GROUP_CONCAT使用方法
+mysql> select password , group_concat(name) , count(*)  from  employee
+    -> group by password;
++----------+-----------------------  +-----------+
+| password | group_concat(name)    | count(*)  |
++----------+-----------------------  +-----------+
+| 000000    | 刘备,孙尚香,关羽,周仓 |        4       |
++----------+-----------------------  +--------- -+
+LIMIT 使用：
+LIMIT 0 5；从0开始的前五个数据
+
+                                                                                   多表联查
+左外连接：先显示左表，在查询有表中符合查询条件的记录，不符合的以NULL代替
+以左表为主，join后面的表，为右表，即department 是右表，以employee 为主
+SELECT e.* , d.sn dsn , d.name dname
+FROM employee AS e LEFT OUTER JOIN department AS d   （OUTER可以省略）
+ON d.sn=e.department_sn
+WHERE e.sn=#{sn}
+
+                                                                              外键
+os数据库下，news表 和 newCate表
+建表创建外键，constraint为外键起别名，便于操作
+constraint cateId_fk_newCate foreign key(cateId) references news_cate(id)
+动态删除外键
+alter table news drop foreign key cateId_fk_newsCate;
+动态添加外键
+alter table news add foreign key cateId references news_cate(id)
+动态添加外键，并设置级联自动更新，删除，当主表发生delete和update，子表跟随更新
+alter table news add foreign key （cateId）references news_cate (id) on delete  cascade  on update cascade;
+
+                                                                        子查询
+以一张表的查询结果为另一张表的查询条件约束
+select * from emp
+where  depId  in  (select  id  from  dep);
+exists：返回真假，相当于 if 语句
+select * from emp where exists (select depName from dep where id=1);
+
+                                                                 子查询应用
+1.创表的同时通过另外一张表添加数据：将emp表的id和username加入刚建的表user中
+create table user(id int unsigned auto_increment key , username vachar(20) )select id,username from emp;
+2.将 user表 的内容，写入user1表
+insert user1 (username) select username from user
+3.将stu表中的 GDX 用户名，添加到user表中：
+insert user2 set username=(select username from stu where username = GDX)
+4.去掉字段的重复值
+select distinct ( username ) from user2;
+                                                                      联合查询
+1.union同时查询两张表：重复字段自动删除
+select  username  from user1  union  select  username   from  user2
+2.union all 简单合并，重复不会删除
+                                                                     无限极分类表
+
+
+
+mysql:删除数据之后，id不连续
+在每次执行插入删除之前，执行此语句：
+alter table mybatis.person  AUTO_INCREMENT=1;
+
+问题：‘performance_schema.session_variables’ doesn’t exist：
+mysql -u root -p
+mysql> set @@global.show_compatibility_56=ON;
+Cannot add or update a child row: a foreign key constraint fails
+外键报错，有可能是：外键对应的表没有数据
+
+java.lang.AbstractMethodError: Method com/mchange/v2/c3p0/impl/NewProxyPrepa
+更换c3p0的依赖版本
+org.springframework.beans.factory.UnsatisfiedDependencyException
+
+mysql:删除数据之后，id不连续
+在每次执行插入删除之前，执行此语句：
+alter table mybatis.person  AUTO_INCREMENT=1;
+
+问题：‘performance_schema.session_variables’ doesn’t exist：
+mysql -u root -p
+mysql> set @@global.show_compatibility_56=ON;
+#mkdir：                创建目录（make directory）
+#rmdir：                 删除目录
+           mkdir -m：  指定创建目录的权限
+           mkdir -p：   即使上级目录不存在，-p可以直接创建不存在的目录
+
+（remove）
+rm -r：            删除目录，并且询问是否删除
+rm -f：            强制删除，不会询问
+
+（move）
+#mv 需要移动的文档路径 需要保存的位置路径    
+#mv  -i  a.txt  b.txt              重命名文件为b（-i 询问是否覆盖）
+#mv  a  demo                 重命名文件夹
+
+（copy）
+#cp 被复制的文档路径 文档被复制到的路径           
+
+#touch 文件路径 ：       创建文件
+
+
+                                                                   vi 编辑器：                    
+ (默认) 命令模式 / 编辑模式 / 最后行模式
+
+#vi 文件名:   
+
+编辑模式：          a  i  o  :  进入编辑模式，可以进行输入
+h j k l ：左上下右  
+ dd ：剪切当前行
+ p  ：黏贴
+ yy ：复制
+
+命令模式：  Esc : 进入命令模式，不可以输入
+
+最末行模式：   ：转换到最末行模式
+: w      保存
+: wa    保存退出
+: q!     不保存退出
+
+                                                                      查找：
+
+查看此命令的目录：    #which   命令      
+#which  cd
+whereis：                           查找特定目录的文件   
+find  ./  -name  a.txt ：    在当前目录查找一个名称为a.txt的文件 
+find  /  -name  a*     ：     查找根目录以后的所有目录的a开头的文件
+                                        
+#vim 文件的路径              打开一个文件（可以不存在，也可以存在）
+
+                                    在linux中，文件名和文件数据是分开储存的
+软连接（ -s ）（相当于 映射方式）
+#ln  -s   绝对路径文件  快捷方式的别名       创建文件的软连接到当前目录下，指向绝对路径的文件
+硬链接（相当于复制）
+#ln    绝对路径文件  快捷方式的别名           相当于复制
+
+                                                                 cat指令:
+
+#cat a.txt                                  查看文件 
+#cat -n a.txt                             显示行号查看（包括空行）
+#cat -b a.txt                             显示行号查看（不包括空行）
+#more /etc/man_db.conf        每页查看，一次显示一页，空格翻页
+#head -n 文件路径                  查看一个文件的前n行，如果不指定n，则默认显示前10行
+#tail -n 文件的路径                  查看一个文件的未n行，如果n不指定默认显示后10行
+#cat 文件路径1 文件路径2 …. 文件路径4 > 文件路径5          将文件1-4合并到文件5
+
+
+                                                               grep（查找）
+
+grep：对文本文件进行模式查找（正则表达式）
+        -i ：忽略大小写
+        -n：显示匹配行以及行号
+        -v：取反，显示不包含文本的所有行
+参数：^a ：指定查找以a为行首的行
+           ke$：指定查找以ke为行尾的行
+例如：      
+#grep  -in  ^as  a.txt              在a.txt中搜索as开头的行，并显示行号忽略大小写
+  
+
+                                                                 echo 和 重定向
+
+#echo  python                        在控制台打印python
+
+输出重定向：
+>：        覆盖输出，会覆盖掉原先的文件内容
+>>：      追加输出，不会覆盖原始文件内容，会在原始内容末尾继续添加
+#ls  -la > a.txt                将ls查到的内容，保存到当前目录下的a.txt（覆盖）
+#echo pyhton  >>  a      将python写进a文件（文件末尾追加）
+
+
+                                                                   管道 （ | ）
+
+使用管道需要两个命令：将第一个命令的输出，通过管道，作为另一个命令的输入
+# ls  -lha | grep ana           显示当前目录下的文件，并查询含有ana字样的文件
+
+
+                                                    用户管理（用户的信息，都在 /home路径下）
+
+（创建删除用户，用户组都必须root用户，其他用户可以使用sudo执行，在命令前加sudo）
+查看当前用户：                      #whoami
+查看当前登录的所有用户：    #who
+创建用户：                            #useradd  -g  群组  用户名   （ -g：指定用户所在组 -m：自己创建家目录）
+设置密码：                            #passwd  用户名                                
+删除用户：                            #userdel  -r  用户名            ( -r 表示同时删除用户的目录)
+查看用户信息：                     #id  用户名
+切换用户：                            #su   -  用户名         （ - 表示切换用户并且切换家目录）
+返回上一用户：                     #exit
+组：
+查看群组：                  #group  用户名
+创建群组：                  #groupadd  群组名
+删除群组：                  #groupdel  群组名
+用户群组修改：            #usermod  -g 群组名 用户名
+修改目标的所属组：     #chgrp - R  组名  文件/目录        
+查看当前用户所属组：  #groups :
+    
+添加附加组：                      usermod  -G  附加组   用户名
+修改用户shell为bash：         usermod   -s   /bin/bash  用户名
+例如：usermod  -sudo  user1    将user1附有sudo权限（需要重新登陆）
+
+
+                                                                                    权限
+
+文件权限：    d/-                rwx                      rwx                          rwx                      1              user1               root 
+            路径/文件       拥有者的权限     拥有着所在组权限    组外用户的权限    硬链接数    拥有者用户      拥有者组名
+硬链接数：到达此文件或路径的方式数
+修改文件的权限：  chown（修改拥有者）  /  chgrp（修改组）  /  chmod
+(change owner)
+修改所有者：                 #chown -r  用户名  文件或目录     
+修改所有者和组：          #chown -r  用户名 : 组名  文件或目录          
+(change group)
+修改所属组：                 #chgrp  -r  组名  文件或目录  
+
+root用户可以修改其他用户的权限
+
+
+三种种修改一个文件的用户权限方法：
+ 第一种：                            
+ chmod -r  xyz  文件或目录
+x：所有者权限    y：拥有着所在组权限     z：其他用户的权限
+x/y/z分别是一个数字值：1 (只能执行) 或 5 (可读可执行) 或  7 (可读可写可执行)
+r： 可读      4分
+w：可写      2分
+x： 可执行  1分
+例如： chmod -r -777  /root/a       表示对/root/a 这目录所有用户可读可写可执行
+
+第二种：                            
+ #chomod  -r  a+w   文件或目录
+将此文件或目录的所有权限增加可写权限（a为所有用户所有群）
+ #chomod  -r  a-x   文件或目录
+将此文件或目录的所有权限减少可执行权限
+
+第三种：
+(拥有者)u=rwx，(拥有者所在组)g=rwx，(气态哦那过户)o=rwx
+#chmod  -R  u=rwx，g=rwx，o=r   文件或目录          
+需要逗号
+（-R 递归修改，修改此目录以及目录下的所有文件目录）
+ 
+
+                                                                 磁盘和目录空间
+
+#df  -h                           查看磁盘的空间
+#du -h                           显示目录下的文件大小
+#free -m                       -m表示以mb为单位查看内存使用情况
+
+                                                                  进程命令
+(process status)
+#ps  aux                         查看进程详细状况（ a：包括其他用户  u：显示进程详细状态  x：显示没有控制终端的进程）
+#top                             动态显示运行中的程序并且排序
+PID:进程id   user：启动此进程的用户   %CUP：cup占用率  %MEM：内存占用率    COMMAND：具体的进程命令
+kill  -9  进程代号            强行终止进程
+
+
+
+                                                                    时间和日期
+#cal                          查看日历
+#date                                                   2018年 3月 24日 星期六 15:54:28
+#date  “+%Y-%m-%d”                       2018-03-24
+#date  “+%Y-%m-%d %H:%M:%S”      2018-03-24 16:01:00
+#date  +%F                                           2018-03-24
+#date  “+%F %T”                                  2018-03-24 16:01:00
+
+                                                            
+
+                                                                    压缩和解压缩
+
+统一命令： #tar  -[ c t x z j J v f  ]  压缩文件
+c :打包
+x ：解打包解压缩
+t：查看内容           v：显示过程             f：指定压缩包名
+z：使用gzip方式     j：使用bzip2方式     J：使用xz方式
+例如：
+#tar  -cvf  mytar.tar  mydir                  ：将mydir'路径以及路径下的文件都打包成mytar.tar
+#tar  -cvf  mytar.tar  a.txt  b.txt  c.txt  ：将 a.txt  b.txt  c.txt'文件打包成mytar.tar
+#tar  -czvf                                             ：不仅打包，并且压缩
+#tar  -cJvf  mytar.tar.xz  a.txt  b.txt  c.txt   : 打包成 xz 类型的包
+#tar  -xvf  mytar.tar                                ：将mytar.tar解压到当前路径
+#tar  -tvf  mytar.tar                              ：查看mytar.tar
+
+
+
+                                                                    软件的安装和卸载
+
+源码包：编译前配置      ./configure
+               编译                 make
+               编译安装          make install
+               删除                 make clean
+
+(只有centos有)
+rpm包：安装                    rpm  -ivh  安装包    （  i：安装   v：显示信息   h：显示进度）
+             查询包信息         rpm  -q   安装包
+             查询安装位置     rpm  -ql   安装包
+             卸载                    rpm  -e   安装包
+
+yum 安装管理rpm包      （-y表示安装过程一路yes）
+自动下载并安装：             yum -y  install  软件包
+更新                                 yum  -y  update  软件包
+卸载                                 yum  -y  remove  软件包
+
+
+安装命令：
+1. 下载：                   curl  -O  命令包的链接地址        wget 下载链接地址 
+2.解压tgz包：            tar  -xzvf   tgz的包
+3.查看解压后的文件夹，看是否有 Makefile，如果有，直接进行安装，如果没有，需要./configure
+4.安装：                    make install
+        
+wget指令：
+后台下载：         wget  -b  链接                                                          
+测试下载链接：  wget  –spider  链接
+
+
+Centos7的防火墙拦截了tomcat访问的8080端口:
+firewall-cmd --permanent --zone=public --add-port=8080/tcp  
+firewall-cmd --reload  
+firewall-cmd --zone=public --query-port=8080/tcp 
+
+                                               查看配置网卡信息 
+#ip addr                            查看ip
+#ping  ip地址                     检测到目标主机是否连接正常
+#ping  www.baidu.com     查看百度ip
+
+SSH ：通过SSH客户端可以远程链接SSH服务器，进行维护（数据传输加密，压缩）
+SSH客户端命令
+#ssh  -p(小写)端口号   user@remote                     -p：端口号，用户名@remote远程机器的地址
+#scp  -P(大写)端口号    user@remote：源目录/源文件  目标目录  目标文件            远程复制到本地
+#scp  -P(大写)端口号  源目录/源文件  user@remote：  目标目录  目标文件            将本地复制到原创
+#scp -r  源目录  user@remote：目标目录                                      复制目录
+
+

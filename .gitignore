@@ -1,0 +1,23 @@
+*.class
+#package file
+*.war
+*.ear
+*.orig
+
+target/
+
+#idea
+
+*.ipr
+*.iml
+*.iws
+
+#temp file
+*.log
+*.cache
+*.patch
+*.tmp
+
+#system ignore
+.DS_Store
+Thumbs.db

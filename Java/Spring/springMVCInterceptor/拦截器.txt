@@ -1,0 +1,56 @@
+拦截器：
+        （1.拦截器执行顺序是按照Spring配置文件中定义的顺序而定的。
+        （2.会先按照顺序执行所有拦截器的preHandle方法，一直遇到return false为止，
+            比如第二个preHandle方法是return false，则第三个以及以后所有拦截器都不会执行。
+        （3.然后执行主方法（自己的controller接口），若中间抛出异常，
+            则跟return false效果一致，不会继续执行postHandle，只会倒序执行afterCompletion方法。
+
+
+    -1.java实现HandlerInterceptor接口：
+        实现方法：
+            1.preHandle：（在此方法中设置拦截条件）
+                1.返回true：继续执行postHandle和afterCompletion和主代码
+                2.返回false：在此之后的所有拦截器都不会执行了
+                            只要遇到return false，则直接进行afterCompletion清理工作，postHandle和自己主程序代码都将被略过（即拦截成功）
+
+            （每一个请求，servlet响应，都会执行下面两个方法）
+            2.postHandle
+            3.afterCompletion
+
+
+    -2.SpringXml配置拦截器：
+        -1.可以配置多个拦截器，项目启动的时候，按照配置顺序依次执行拦截器
+        -2.path="/user/**"表示拦截/user路径下的子类孙子类...
+        -3.exclude标签进行排除path，不进行拦截
+
+               <mvc:interceptors>
+        第一个拦截器  <mvc:interceptor>
+                        <mvc:mapping path="/user/**"/>
+                        <bean class="com.imooc.core.LoginSecondInterceptor"></bean>
+                    </mvc:interceptor>
+
+        第二个拦截器  <mvc:interceptor>
+                        <mvc:mapping path="/user/**"></mvc:mapping>
+                        <mvc:exclude-mapping path="/user/updatepwd"></mvc:exclude-mapping>
+                        <mvc:exclude-mapping path="/user/updatebackground/*"></mvc:exclude-mapping>
+                        <bean class="com.imooc.core.LoginFirstInterceptor"></bean>
+                    </mvc:interceptor>
+                </mvc:interceptors>
+
+
+    -3.在wen.xml中配置拦截器信息：
+        在web.xml中配置Spring.xml
+
+            <servlet>
+                <servlet-name>SpringMVC</servlet-name>
+                <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+                <init-param>
+                    <param-name>contextConfigLocation</param-name>
+                    <param-value>classpath:spring-web.xml</param-value>
+                </init-param>
+                <load-on-startup>1</load-on-startup>
+            </servlet>
+            <servlet-mapping>
+                <servlet-name>SpringMVC</servlet-name>
+                <url-pattern>/</url-pattern>
+            </servlet-mapping>

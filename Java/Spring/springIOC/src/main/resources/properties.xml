@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--P命名空间需要加入xmlns:p="http://www.springframework.org/schema/p"-->
+    <!--构造器的注入 ,不需要get set方法，直接构造器注入属性-->
+
+
+    <bean id="User" class="properties.User">
+        <!--构造器的注入 ,不需要get set方法，直接构造器注入属性-->
+        <constructor-arg name="name" value="Li"/>
+        <constructor-arg name="age" value="17"/>
+    </bean>
+
+    <!--将一个对象注入到另一个对象中，不用-->
+    <bean id="Student" class="properties.Student" p:cat-ref="Cat">
+        <property name="name" value="小李"/>
+        <property name="age" value="13"/>
+        <!--<property name="cat" ref="Cat"/>-->
+    </bean>
+    <!--使用P命名空间来对属性进行赋值-->
+    <bean id="Cat" class="properties.Cat" p:name="Kitty"/>
+</beans>

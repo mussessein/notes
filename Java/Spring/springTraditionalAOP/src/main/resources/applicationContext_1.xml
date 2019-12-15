@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--===========配置目标类==============-->
+    <bean id="studentDao" class="aopDemo1.StudentDaoImpl"/>
+
+    <!--==========配置前置通知类型============-->
+    <bean id="myBeforeAdvice" class="aopDemo1.MyBeforeAdvice"/>
+
+    <!--=============spring aop产生代理对象,通过ProxyFactoryBean织入代理===============-->
+    <bean id="studentDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--配置目标类,要增强的是谁，这个studentDao是上面配置的bean，不是接口类，是实现类-->
+        <property name="target" ref="studentDao"/>
+        <!--配置实现的接口，这个才是接口类-->
+        <property name="proxyInterfaces" value="aopDemo1.StudentDao"/>
+        <!--拦截的对象名称-->
+        <property name="interceptorNames" value="myBeforeAdvice"/>
+        <!--spring默认使用JDK的动态代理，optimize设置为true表示使用CGLIB动态代理-->
+        <property name="optimize" value="true"/>
+    </bean>
+</beans>

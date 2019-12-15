@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--命名空间的设置P -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--UserService的创建权，交给了spring，class为实现类,拿到id就相当于创建了class下的类-->
+    <bean id="UserService" class="ioc.UserServiceImpl">
+        <!--设置类下的属性-->
+        <property name="name" value="zhangsan"></property>
+    </bean>
+
+
+    <bean id="UserDao" class="StrongMethod.UserDaoImpl"/>
+
+    <bean class="StrongMethod.OverrideBeanPostProcessor"/>
+
+
+
+
+</beans>

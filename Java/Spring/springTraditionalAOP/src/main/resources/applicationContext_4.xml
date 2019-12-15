@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--配置目标类===============-->
+    <bean id="studentDao" class="aopDemoAuto2.StudentDaoImpl"/>
+    <bean id="customerDao" class="aopDemoAuto2.CustomerDao"/>
+
+    <bean id="myBeforeAdvice" class="aopDemoAuto2.MyBeforeAdvice"/>
+    <bean id="myAroundAdvice" class="aopDemoAuto2.MyAroundAdvice"/>
+
+
+    <!--在类生成的过程中，就自动产生代理-->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
+
+    <!--配置一个切面-->
+    <bean id="myAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <!--value就是找到CustomerDao中的save方法，进行增强，需要转译\.-->
+        <property name="pattern" value="aopDemoAuto2\.CustomerDao\.save"/>
+        <!--使用什么方法进行增强-->
+        <property name="advice" ref="myAroundAdvice"/>
+    </bean>
+
+
+</beans>

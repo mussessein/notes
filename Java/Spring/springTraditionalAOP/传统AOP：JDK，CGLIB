@@ -1,0 +1,21 @@
+传统AOP
+-CGLIB动态代理 （修改默认代理<property name="optimize" value="true"/>）
+-JDK动态代理   （默认）
+
+-自动代理步骤：（xml配置）
+    1.配置目标类，即将要代理的类，也就是将要增强的方法所在的类
+            <bean id="studentDao" class="aopDemoAuto2.StudentDaoImpl"/>
+            <bean id="customerDao" class="aopDemoAuto2.CustomerDao"/>
+    2.配置重写的增强类：MyAroundAdvice，MyBeforeAdvice等等
+            <bean id="myBeforeAdvice" class="aopDemoAuto2.MyBeforeAdvice"/>
+            <bean id="myAroundAdvice" class="aopDemoAuto2.MyAroundAdvice"/>
+    3.配置自动代理：
+            <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
+    4.配置AOP的一个切面：
+    pattern：声明需要增强的方法，可以使用正则
+    advice：声明，增强此方法的增强方式
+            <bean id="myAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+                <property name="pattern" value="aopDemoAuto2\.CustomerDao\.save"/>
+                <property name="advice" ref="myAroundAdvice"/>
+            </bean>

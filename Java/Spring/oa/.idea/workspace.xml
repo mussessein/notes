@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="oa_web:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="04b734ca-ae5b-4109-b29f-1d14d6248018" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/src/main/java/LeetCode/LinkedList/Num_19.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/src/main/java/LeetCode/LinkedList/Num_2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/src/main/java/LeetCode/LinkedList/Num_24.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/src/main/java/Offer/Array/CountK.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/src/main/java/Offer/Array/CountMost.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/src/main/java/Offer/Array/FindOnlyNum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/src/main/java/Offer/Array/MinK.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/src/main/java/Offer/Array/MinNumber.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/src/main/java/Offer/Array/OddEvenSort.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../JavaCode/DesignPatterns/src/singleton/Singleton_6.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaCode/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaCode/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaCode/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaCode/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaCode/Concurrent/src/main/java/ThreadLocal/MyThreadLocal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaCode/Concurrent/src/main/java/ThreadLocal/MyThreadLocal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/src/main/java/LeetCode/Num_21.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/src/main/java/LeetCode/LinkedList/Num_21.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/src/main/java/LeetCode/Num_2_LinkedList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/src/main/java/LeetCode/bishi/Cycle_String.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/src/main/java/LeetCode/bishi/Huawei_num_1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/src/main/java/Offer/LinkedList/test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/target/classes/LeetCode/Num_2_LinkedList$ListNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaCode/DataStructureAlgorithm/target/classes/LeetCode/Num_2_LinkedList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaCode/out/production/DesignPatterns/singleton/Singleton_1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaCode/out/production/DesignPatterns/singleton/Singleton_1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaCode/out/production/DesignPatterns/singleton/Singleton_4.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaCode/out/production/DesignPatterns/singleton/Singleton_4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oa.iml" beforeDir="false" afterPath="$PROJECT_DIR$/oa.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/RDD.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/RDD算子.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/.idea/libraries/scala_sdk_2_12_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/.idea/saveactions_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/.idea/scala_compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/WordCount.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/input/user.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/input/word1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/resources/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Scala_notes/Collection/Array/Foreach.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Scala_notes/Collection/Array/MyArray.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Scala_notes/Collection/Array/MyArrayBuffer.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Scala_notes/Collection/List/MyList.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Scala_notes/Collection/Set/MySet.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/Accumulator/Accumulator_Test.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/Accumulator/My_Accumulator.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/Accumulator/Word_Accumulator.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/BroadCast/BroadCast_Test.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_CheckPoint.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Data/RDD_HBase.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Data/RDD_Json.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Data/RDD_MySql_Read.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Data/RDD_MySql_Write.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Make.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Operator/K_V_Operator/RDD_partitionBy.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Operator/K_V_Operator/RDD_reduceByKey.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Operator/K_V_Operator/groupByKey.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Operator/V_Operator/RDD_coalesce.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Operator/V_Operator/RDD_distinct.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Operator/V_Operator/RDD_glom.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Operator/V_Operator/RDD_groupBy.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Operator/V_Operator/RDD_map.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Operator/V_Operator/RDD_sample.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Operator/V_Operator/RDD_sortBy.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Operator/V_Operator/RDD_union.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/RDD_Serailizable.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/RDD/my_partitioner.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/Core/WordCount/WordCount.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/SparkSQL/DF_Transform.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/SparkSQL/DataFrame/DF_Test.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/SparkSQL/DataSet/DS_Test.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/SparkSQL/JDBC/JDBC_Read.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/SparkSQL/JDBC/JDBC_Write.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/SparkSQL/UDAF/AverageAggregator.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/SparkSQL/UDAF/AverageAggregator_Test.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/SparkSQL/UDAF/AverageUDAF.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/SparkSQL/UDAF/AverageUDAF_Test.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala_Code/src/main/scala/Spark/SparkStreaming/WordCount.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Scala下划线.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Spark.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/SparkSQL.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/SparkStreaming.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Spark三种模式.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/Spark数据结构.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/image/DStream.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/image/DataType.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/image/dataframe.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/image/dataset.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/image/driver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/image/javaio.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/image/spark-yarn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/image/spark.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/image/sparkrdd.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/image/stage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/image/streaming.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Spark_notes/image/wordcount.png" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Jsp File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="11" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1SmoJ8wsz4HDpqhhEGpGZiAvr0i" />
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Android</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554283818071" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.275" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/oa_dao/src/main/resources/com" />
+      <recent name="$PROJECT_DIR$/oa_biz/src/main/java/com" />
+      <recent name="$PROJECT_DIR$/oa_dao/src/main/java/com" />
+      <recent name="$PROJECT_DIR$/oa_web/src/main/java/com" />
+      <recent name="D:\Code\Spring\oa" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.imooc.oa.controller" />
+      <recent name="com.imooc.oa.biz" />
+      <recent name="com.imooc.oa.dao" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="H:\workspace\IdeaProjects\oa\oa_dao\src\main\resources\com\imooc\oa\dao" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat">
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <module name="oa_biz" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 9" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+      <deployment>
+        <artifact name="oa_web:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="department_list_jsp_oa_8" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="64866" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="oa_web:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Test" />
+      <item itemvalue="Tomcat Server.Tomcat" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Tomcat Server.Tomcat" />
+        <item itemvalue="Application.Test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="04b734ca-ae5b-4109-b29f-1d14d6248018" name="Default" comment="" />
+      <created>1522055971066</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1522055971066</updated>
+      <workItem from="1522055974610" duration="969000" />
+      <workItem from="1522113069796" duration="8866000" />
+      <workItem from="1522193633886" duration="27368000" />
+      <workItem from="1522241657632" duration="291000" />
+      <workItem from="1522285277646" duration="16106000" />
+      <workItem from="1522372420902" duration="1672000" />
+      <workItem from="1522484371396" duration="17543000" />
+      <workItem from="1522546181341" duration="2384000" />
+      <workItem from="1522598320737" duration="15331000" />
+      <workItem from="1522811044589" duration="15587000" />
+      <workItem from="1524359879630" duration="646000" />
+      <workItem from="1553491534056" duration="7028000" />
+      <workItem from="1553502008796" duration="3559000" />
+      <workItem from="1553505892583" duration="6914000" />
+      <workItem from="1553553369239" duration="7436000" />
+      <workItem from="1553663505424" duration="297000" />
+      <workItem from="1553772432409" duration="802000" />
+      <workItem from="1553870079412" duration="164000" />
+      <workItem from="1553870372925" duration="1427000" />
+      <workItem from="1553927357173" duration="4085000" />
+      <workItem from="1553997493279" duration="153000" />
+      <workItem from="1554167854528" duration="20271000" />
+      <workItem from="1554255844543" duration="254000" />
+      <workItem from="1554282982921" duration="852000" />
+      <workItem from="1557228989582" duration="4743000" />
+      <workItem from="1557234134448" duration="16000" />
+      <workItem from="1558026765297" duration="1233000" />
+      <workItem from="1558233534819" duration="3505000" />
+      <workItem from="1559023068551" duration="1570000" />
+      <workItem from="1559033759274" duration="921000" />
+      <workItem from="1559035649735" duration="1373000" />
+      <workItem from="1559184238424" duration="977000" />
+      <workItem from="1560999956686" duration="1268000" />
+      <workItem from="1561006883952" duration="19000" />
+      <workItem from="1562041628893" duration="856000" />
+      <workItem from="1562422544910" duration="1006000" />
+      <workItem from="1562423585097" duration="224000" />
+      <workItem from="1562424593216" duration="1153000" />
+      <workItem from="1562425779537" duration="1855000" />
+      <workItem from="1562544527217" duration="19000" />
+      <workItem from="1564403862435" duration="661000" />
+      <workItem from="1564405806992" duration="594000" />
+      <workItem from="1564408995828" duration="599000" />
+      <workItem from="1564410301660" duration="375000" />
+      <workItem from="1564410721316" duration="66000" />
+      <workItem from="1565789952040" duration="42000" />
+      <workItem from="1569469845314" duration="863000" />
+      <workItem from="1572178060991" duration="551000" />
+      <workItem from="1572236833165" duration="8000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/../.." />
+    </ignored-roots>
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+</project>

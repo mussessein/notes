@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e448dfff-1764-4751-9a72-e837783e13bd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../oa/.idea/libraries/Maven__org_springframework_spring_aop_5_1_7_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../oa/.idea/libraries/Maven__org_springframework_spring_beans_5_1_7_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../oa/.idea/libraries/Maven__org_springframework_spring_context_5_1_7_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../oa/.idea/libraries/Maven__org_springframework_spring_expression_5_1_7_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../oa/.idea/libraries/Maven__org_springframework_spring_jdbc_5_1_7_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../oa/.idea/libraries/Maven__org_springframework_spring_tx_5_1_7_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Java多线程.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java多线程.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spring.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/.idea/artifacts/oa_web_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/.idea/artifacts/oa_web_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/oa_biz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_biz/oa_biz.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/src/main/java/com/imooc/oa/biz/ClaimVoucherBiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_biz/src/main/java/com/oa/biz/ClaimVoucherBiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/src/main/java/com/imooc/oa/biz/DepartmentBiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_biz/src/main/java/com/oa/biz/DepartmentBiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/src/main/java/com/imooc/oa/biz/EmployeeBiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_biz/src/main/java/com/oa/biz/EmployeeBiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/src/main/java/com/imooc/oa/biz/GlobalBiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_biz/src/main/java/com/oa/biz/GlobalBiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/src/main/java/com/imooc/oa/biz/impl/ClaimVoucherBizImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_biz/src/main/java/com/oa/biz/impl/ClaimVoucherBizImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/src/main/java/com/imooc/oa/biz/impl/DepartmentBizImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_biz/src/main/java/com/oa/biz/impl/DepartmentBizImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/src/main/java/com/imooc/oa/biz/impl/EmployeeBizImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_biz/src/main/java/com/oa/biz/impl/EmployeeBizImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/src/main/java/com/imooc/oa/biz/impl/GlobalBizImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_biz/src/main/java/com/oa/biz/impl/GlobalBizImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/src/main/resources/spring-biz.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_biz/src/main/resources/spring-biz.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/target/classes/com/imooc/oa/biz/ClaimVoucherBiz.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/target/classes/com/imooc/oa/biz/DepartmentBiz.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/target/classes/com/imooc/oa/biz/EmployeeBiz.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/target/classes/com/imooc/oa/biz/GlobalBiz.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/target/classes/com/imooc/oa/biz/impl/ClaimVoucherBizImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/target/classes/com/imooc/oa/biz/impl/DepartmentBizImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/target/classes/com/imooc/oa/biz/impl/EmployeeBizImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/target/classes/com/imooc/oa/biz/impl/GlobalBizImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_biz/target/classes/spring-biz.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_biz/target/classes/spring-biz.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/imooc/oa/dao/ClaimVoucherDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/oa/dao/ClaimVoucherDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/imooc/oa/dao/ClaimVoucherItemDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/oa/dao/ClaimVoucherItemDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/imooc/oa/dao/DealRecordDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/oa/dao/DealRecordDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/imooc/oa/dao/DepartmentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/oa/dao/DepartmentDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/imooc/oa/dao/EmployeeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/oa/dao/EmployeeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/imooc/oa/entity/ClaimVoucher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/oa/entity/ClaimVoucher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/imooc/oa/entity/ClaimVoucherItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/oa/entity/ClaimVoucherItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/imooc/oa/entity/DealRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/oa/entity/DealRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/imooc/oa/entity/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/oa/entity/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/imooc/oa/entity/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/oa/entity/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/imooc/oa/global/Contant.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_dao/src/main/java/com/oa/global/Contant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/src/main/resources/spring-dao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_dao/src/main/resources/spring-dao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/target/classes/com/imooc/oa/dao/ClaimVoucherDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/target/classes/com/imooc/oa/dao/ClaimVoucherItemDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/target/classes/com/imooc/oa/dao/DealRecordDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/target/classes/com/imooc/oa/dao/DepartmentDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/target/classes/com/imooc/oa/dao/EmployeeDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/target/classes/com/imooc/oa/entity/ClaimVoucher.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/target/classes/com/imooc/oa/entity/ClaimVoucherItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/target/classes/com/imooc/oa/entity/DealRecord.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/target/classes/com/imooc/oa/entity/Department.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/target/classes/com/imooc/oa/entity/Employee.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/target/classes/com/imooc/oa/global/Contant.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_dao/target/classes/spring-dao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_dao/target/classes/spring-dao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/oa_web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/oa_web.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/src/main/java/com/imooc/oa/controller/ClaimVoucherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/src/main/java/com/oa/controller/ClaimVoucherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/src/main/java/com/imooc/oa/controller/DepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/src/main/java/com/oa/controller/DepartmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/src/main/java/com/imooc/oa/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/src/main/java/com/oa/controller/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/src/main/java/com/imooc/oa/controller/GloablController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/src/main/java/com/oa/controller/GloablController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/src/main/java/com/imooc/oa/dto/ClaimVoucherInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/src/main/java/com/oa/dto/ClaimVoucherInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/src/main/java/com/imooc/oa/global/EncodingFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/src/main/java/com/oa/global/EncodingFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/src/main/java/com/imooc/oa/global/LoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/src/main/java/com/oa/global/LoginInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/src/main/resources/spring-web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/src/main/resources/spring-web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/src/main/webapp/WEB-INF/pages/claim_voucher_check.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/src/main/webapp/WEB-INF/pages/claim_voucher_check.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/src/main/webapp/WEB-INF/pages/claim_voucher_deal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/src/main/webapp/WEB-INF/pages/claim_voucher_deal.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/src/main/webapp/WEB-INF/pages/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/src/main/webapp/WEB-INF/pages/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/target/classes/com/imooc/oa/controller/ClaimVoucherController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/target/classes/com/imooc/oa/controller/DepartmentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/target/classes/com/imooc/oa/controller/EmployeeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/target/classes/com/imooc/oa/controller/GloablController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/target/classes/com/imooc/oa/dto/ClaimVoucherInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/target/classes/com/imooc/oa/global/EncodingFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/target/classes/com/imooc/oa/global/LoginInterceptor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/target/classes/spring-web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/target/classes/spring-web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/target/oa_web/WEB-INF/classes/spring-web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/target/oa_web/WEB-INF/classes/spring-web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/target/oa_web/WEB-INF/lib/oa_biz-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/target/oa_web/WEB-INF/lib/oa_biz-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/target/oa_web/WEB-INF/lib/oa_dao-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/target/oa_web/WEB-INF/lib/oa_dao-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/target/oa_web/WEB-INF/pages/claim_voucher_check.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/target/oa_web/WEB-INF/pages/claim_voucher_check.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/target/oa_web/WEB-INF/pages/claim_voucher_deal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/target/oa_web/WEB-INF/pages/claim_voucher_deal.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/target/oa_web/WEB-INF/pages/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/target/oa_web/WEB-INF/pages/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/oa_web/target/oa_web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/oa_web/target/oa_web/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../oa/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../oa/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../README.md" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext2.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="550">
+              <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/AspectJXML/CustomerDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/AspectJXML/CustomerDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
+              <folding>
+                <element signature="e#112#113#0" expanded="true" />
+                <element signature="e#162#163#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/AspectJXML/MyAspectXML.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/AspectJXML/TestDemo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="spring-beans.schema" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/Text.txt" />
+        <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/AspectJDemo1/TestDemo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AspectJXML/CustomerDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AspectJXML/TestDemo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AspectJ提供的通知类型.txt" />
+        <option value="$PROJECT_DIR$/AspectJ的通知方法.txt" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/AspectJDemo1/MyAspectJAnnotation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AspectJDemo1/ProductDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AspectJXML/CustomerDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AspectJXML/MyAspectXML.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/applicationContext2.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="D:/Maven/apache-maven-3.6.0" />
+        <option name="userSettingsFile" value="D:\Maven\apache-maven-3.6.0\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="downloadSourcesAutomatically" value="true" />
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="114" />
+    <option name="y" value="39" />
+    <option name="width" value="948" />
+    <option name="height" value="1041" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="springAspectJ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="springAspectJ" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554274102096" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../oa" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.19770116" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Code\Spring\springAspectJ\src\main\java\AspectJDemo1" />
+      <recent name="D:\Code\Spring\springAspectJ\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.TestDemo (1)">
+    <configuration name="TestDemo (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springAspectJ" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="AspectJXML.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="AspectJXML" />
+      <option name="MAIN_CLASS_NAME" value="AspectJXML.TestDemo" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestDemo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springAspectJ" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="AspectJDemo1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="AspectJDemo1" />
+      <option name="MAIN_CLASS_NAME" value="AspectJDemo1.TestDemo" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestDemo.demo (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springAspectJ" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="AspectJXML.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="AspectJXML" />
+      <option name="MAIN_CLASS_NAME" value="AspectJXML.TestDemo" />
+      <option name="METHOD_NAME" value="demo" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestDemo.demo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springAspectJ" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="AspectJDemo1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="AspectJDemo1" />
+      <option name="MAIN_CLASS_NAME" value="AspectJDemo1.TestDemo" />
+      <option name="METHOD_NAME" value="demo" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TestDemo (1)" />
+        <item itemvalue="JUnit.TestDemo.demo" />
+        <item itemvalue="JUnit.TestDemo" />
+        <item itemvalue="JUnit.TestDemo.demo (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e448dfff-1764-4751-9a72-e837783e13bd" name="Default Changelist" comment="" />
+      <created>1553061852249</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1553061852249</updated>
+      <workItem from="1553061855068" duration="10968000" />
+      <workItem from="1553145975633" duration="616000" />
+      <workItem from="1553257571873" duration="555000" />
+      <workItem from="1553263807565" duration="722000" />
+      <workItem from="1553315734533" duration="389000" />
+      <workItem from="1553420289339" duration="202000" />
+      <workItem from="1553435937197" duration="483000" />
+      <workItem from="1554272671060" duration="1470000" />
+      <workItem from="1562339670885" duration="3068000" />
+      <workItem from="1562423512835" duration="48000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="TestDemo_demo_(1) - 2019.03.20 at 17h 21m 39s.xml">
+      <configuration name="TestDemo.demo (1)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestDemo_demo_(1) - 2019.03.20 at 17h 22m 17s.xml">
+      <configuration name="TestDemo.demo (1)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestDemo - 2019.07.05 at 23h 33m 14s.xml">
+      <configuration name="TestDemo" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestDemo_demo - 2019.07.05 at 23h 33m 31s.xml">
+      <configuration name="TestDemo.demo" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestDemo - 2019.07.05 at 23h 41m 04s.xml">
+      <configuration name="TestDemo" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestDemo - 2019.07.05 at 23h 41m 32s.xml">
+      <configuration name="TestDemo" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestDemo - 2019.07.05 at 23h 41m 51s.xml">
+      <configuration name="TestDemo" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestDemo_demo - 2019.07.05 at 23h 46m 53s.xml">
+      <configuration name="TestDemo.demo" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestDemo_(1) - 2019.07.05 at 23h 56m 47s.xml">
+      <configuration name="TestDemo (1)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestDemo_(1) - 2019.07.05 at 23h 57m 05s.xml">
+      <configuration name="TestDemo (1)" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="18521000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="114" y="39" width="948" height="1041" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27593818" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32963374" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.43308747" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.40885141" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32876712" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="SciView" order="9" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/AspectJDemo1.java" />
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/util/stream/ReferencePipeline.java" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/5.1.0.RELEASE/spring-test-5.1.0.RELEASE-sources.jar!/org/springframework/test/context/junit4/SpringJUnit4ClassRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="136" selection-start-line="136" selection-end-line="136" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/AspectJ提供的通知类型.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="39" column="35" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="40" column="43" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/AspectJDemo1/MyAspectJAnnotation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1253#1254#0" expanded="true" />
+            <element signature="e#1327#1328#0" expanded="true" />
+            <element signature="e#1434#1435#0" expanded="true" />
+            <element signature="e#1504#1505#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/AspectJDemo1/TestDemo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="29" column="21" lean-forward="true" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/AspectJDemo1/ProductDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" column="34" lean-forward="true" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AspectJ的通知方法.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/AspectJXML/CustomerDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/AspectJXML/CustomerDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="e#112#113#0" expanded="true" />
+            <element signature="e#162#163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/AspectJXML/MyAspectXML.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/AspectJXML/TestDemo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>springAspectJ:war</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Web</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>springAspectJ</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.19770116" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: junit:junit:4.11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.19770116" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

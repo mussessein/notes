@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--配置目标类===============-->
+    <bean id="studentDao" class="aopDemoAuto.StudentDaoImpl"/>
+    <bean id="customerDao" class="aopDemoAuto.CustomerDao"/>
+
+    <bean id="myBeforeAdvice" class="aopDemoAuto.MyBeforeAdvice"/>
+    <bean id="myAroundAdvice" class="aopDemoAuto.MyAroundAdvice"/>
+
+    <!--在类生成的过程中，就自动产生代理-->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <!--直接选中所有的id中有Dao的bean-->
+        <property name="beanNames" value="*Dao"/>
+        <!--所有方法，进行前置增强-->
+        <property name="interceptorNames" value="myBeforeAdvice"/>
+
+    </bean>
+
+</beans>

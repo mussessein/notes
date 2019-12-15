@@ -54,10 +54,15 @@
 
 ### git创建项目仓库
 
-1. git init 初始化
-2. git remote add origin url 关联远程仓库
-3. git pull
-4. git fetch 获取远程仓库中所有的分支到本地
+将已有代码传到新仓库：
+
+```shell
+git init
+git add .
+git commit -m ""
+git remote add origin ssh@
+git push -u origin master
+```
 
 ### 忽略已加入到版本库中的文件
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--Bean的SqEL的属性 注入-->
+    <bean id="Categroy" class="SqEl.Categroy">
+        <property name="name" value="#{'服装'}"></property>
+    </bean>
+
+    <bean id="OnSale" class="SqEl.OnSale">
+    </bean>
+
+    <bean id="Product" class="SqEl.Product">
+        <property name="goodsName" value="#{'男装'}"></property>
+        <!--调用别的类的方法-->
+        <property name="goodsPrice" value="#{OnSale.onsale()}"></property>
+        <!--调用传入别的类-->
+        <property name="categroy" value="#{Categroy}"></property>
+    </bean>
+</beans>

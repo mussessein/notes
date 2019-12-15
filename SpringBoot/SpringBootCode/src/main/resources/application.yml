@@ -1,0 +1,30 @@
+logging:
+  # 每个应用下的日志级别
+  level:
+    notes.springbootnotes: info
+  # 日志保存在本地目录(文件夹目录)
+  file:
+    path: ./logs/
+  # 日志输出在console，file中的格式
+  pattern:
+    console: "%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n"
+    file: "%d{yyyy-MM-dd} === [%thread] === %-5level === %logger{50} ==== %msg%n"
+
+spring:
+  profiles:
+    # 激活开发环境——在logback配置文件的<springProfile name="dev">中，会选择对应的日志输出格式
+    active: dev
+  mvc:
+    date-format: yyyy-MM-dd
+  # 禁用浏览器页面缓存
+  thymeleaf:
+    cache: false
+  # 国际化配置
+  messages:
+    basename: i18n.login
+
+server:
+  servlet:
+    context-path: /notes
+  tomcat:
+    uri-encoding: utf-8

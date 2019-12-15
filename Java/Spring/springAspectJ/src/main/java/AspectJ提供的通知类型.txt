@@ -1,0 +1,73 @@
+
+==============@AspectJ的两种方式：1.注解方式 2.XML配置方式===============
+
+                                    注解方式
+
+@Before
+        -前置通知，相当于BeforeAdvice
+        -@Before(value="execution(* AspectJDemo1.ProductDao.save(..))")
+
+@AfterReturning
+        -后置通知，相当于AfterReturningAdvice
+        -@AfterReturning(value = "execution(* AspectJDemo1.ProductDao.update())",returning = "hi")
+
+@Around
+        -环绕通知 相当于MethodInterceptor
+        -@Around(value = "execution(* AspectJDemo1.ProductDao.findAll()))")
+
+@AfterThrowing
+        -异常抛出通知，相当于 ThrowAdvice
+        -@AfterThrowing(value = "execution(* AspectJDemo1.ProductDao.findOne()))",throwing = "e")
+
+
+@After
+        -最终final通知，不管是否异常，都会执行
+
+@DeclareParents（了解）
+        -引介通知，相当于IntroductionInterceptor
+
+
+====================切入点表达式，在通知中定义切点====================
+1.通过execution函数，可以定义切点的方法切入
+    格式：execution(访问修饰符 返回类型 方法名(args) 异常)
+
+    例如：
+    -匹配所有类public方法：
+        execution（public * *（...））
+    -匹配指定包
+         execution（* com.dao.*（...））
+    -匹配所有save开头的方法
+         execution（* com.dao.* save*()）
+================================================================
+
+@Pointcut 为切点命名
+    -在有很多通知的时候，要维护的方法太多，对于重复的切点（方法）可以进行命名
+    -如果一个切点有多个通知，要修改此方法，只需要对Pointcut修改即可
+
+-1.定义一个Pointcut       @Pointcut(value="execution(* AspectJDemo1.ProductDao.save(..))")
+                       public void pointcut_1(){ }
+
+-2.那么   pointcut_1就相当于"execution(* AspectJDemo1.ProductDao.save(..))"
+
+-3.在通知中就可以写成
+        -@Before(value="pointcut_1()")
+===============================================================
+                           XML方式
+<!--aop的相关配置-->
+<aop:config>
+   <!--选择一个切点，为其命名-->
+   <aop:pointcut id="pointcut_1" expression="execution(* AspectJXML.CustomerDao.save(..))"/>
+   <aop:pointcut id="pointcut_2" expression="execution(* AspectJXML.CustomerDao.update(..))"/>
+   <aop:pointcut id="pointcut_3" expression="execution(* AspectJXML.CustomerDao.find(..))"/>
+   <aop:pointcut id="pointcut_4" expression="execution(* AspectJXML.CustomerDao.delete(..))"/>
+
+   <!--aop:aspect可以有多个切入点,内部可以设置各种通知-->
+
+   <aop:aspect ref="myAspectXML">
+       <aop:before method="before" pointcut-ref="pointcut_1"/>
+       <aop:after-returning method="afterReturning" pointcut-ref="pointcut_2" returning="hi"/>
+       <aop:around method="around" pointcut-ref="pointcut_3"/>
+       <aop:after-throwing method="afterThrowing" pointcut-ref="pointcut_3" throwing="e"/>
+       <aop:after method="after" pointcut-ref="pointcut_4"/>
+   </aop:aspect>
+</aop:config>

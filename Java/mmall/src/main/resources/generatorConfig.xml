@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!--找到.properties文件-->
+    <properties resource="datasource.properties"/>
+    <!--如果用maven插件运行MyBatis-gennerator，就需要配置此项-->
+    <classPathEntry location="${db.driverLocation}"/>
+    <context id="default" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 创建class的时候，是否去除自动生成的注释-->
+            <property name="suppressDate" value="true" />
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库连接 -->
+        <jdbcConnection driverClass="${db.driverClassName}"
+                        connectionURL="${db.url}"
+                        userId="${db.username}"
+                        password="${db.password}">
+        </jdbcConnection>
+        <!--默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer
+            true，把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!--targetPackage生成目标存放位置，targetProject生成目标存在的项目位置-->
+        <javaModelGenerator targetPackage="com.pojo" targetProject="./src/main/java">
+            <!--是否允许子包 -->
+            <property name="enableSubPackages" value="false"/>
+            <!--是否添加构造函数 -->
+            <property name="constructorBased" value="true"/>
+            <!-- 从数据库返回的值被清理前后的空格  -->
+            <property name="trimStrings" value="true" />
+            <!--建立的对象是否不可改变。即没有setter方法-->
+            <property name="immutable" value="false" />
+        </javaModelGenerator>
+        <!--mapper映射文件生成所在目录，对每一个表生成对应的mapper.xml文件  -->
+        <sqlMapGenerator targetPackage="mappers" targetProject="./src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <!-- 生成对应的Mapper接口类文件，即dao接口文件 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.dao" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!--一共需要几张表，就几个table标签-->
+        <table tableName="mmall_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
+        <table tableName="mmall_shipping" domainObjectName="Shipping" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
+        <table tableName="mmall_product" domainObjectName="Product" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <!--这里要把数据库中的text类型，转化为VARCHAR，这样生成的class属性就是String类型-->
+            <columnOverride column="detail" jdbcType="VARCHAR"/>
+            <columnOverride column="sub_images" jdbcType="VARCHAR"/>
+        </table>
+        <table tableName="mmall_pay_info" domainObjectName="PayInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
+        <table tableName="mmall_order_item" domainObjectName="OrderItem" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
+        <table tableName="mmall_category" domainObjectName="Category" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
+        <table tableName="mmall_cart" domainObjectName="Cart" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
+        <table tableName="mmall_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--配置目标类=======================-->
+    <bean id="customerDao" class="aopDemo2.CustomerDao"/>
+
+    <!--配置通知=========================-->
+    <bean id="myAroundAdvice" class="aopDemo2.MyAroundAdvice"/>
+
+
+    <!--针对某个方法进行增强的配置，需要额外配置一个myAdvisor来筛选需要的方法，告诉aop哪些方法需要增强-->
+    <!--此筛选是通过Pattern的正则表达式进行筛选-->
+    <bean id="myAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <!--使用正则表达式：. 任意字符 * 任意次数 .* 代表所有方法 .*save.*表示包含save的方法
+        多个正则表达式，需要用patterns属性：.*save.*,.*delete.*表示两个都包含在内
+        -->
+        <property name="pattern" value=".*save.*"/>
+        <property name="patterns" value=".*save.*,.*delete.*"/>
+        <property name="advice" ref="myAroundAdvice"/> <!--指向增强方法-->
+
+    </bean>
+
+    <!--配置并产生代理  通过ProxyFactoryBean织入代理=-->
+    <bean id="customerDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--配置目标类-->
+        <property name="target" ref="customerDao"/>
+        <!--在没有实现接口的配置：-->
+        <property name="proxyTargetClass" value="true"/>
+        <!--针对某个方法进行增强的配置，需要额外配置一个myAdvisor来筛选需要的方法-->
+        <property name="interceptorNames" value="myAdvisor"/>
+    </bean>
+</beans>

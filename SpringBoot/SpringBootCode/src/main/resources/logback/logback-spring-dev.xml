@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--开发日志，不需要输出到文件，只需要打印在控制台-->
+
+<!-- 从高到地低 OFF 、 FATAL 、 ERROR 、 WARN 、 INFO 、 DEBUG 、 TRACE 、 ALL -->
+
+<!-- 属性描述 scan：性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true scanPeriod:设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。
+	debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <contextName>d1money-web-ys-ems</contextName>
+
+    <!-- ConsoleAppender 控制台输出日志 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 对日志进行格式化 -->
+        <encoder>
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger -%msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="java.sql.PreparedStatement" value="DEBUG" />
+    <logger name="java.sql.Connection" value="DEBUG" />
+    <logger name="java.sql.Statement" value="DEBUG" />
+    <logger name="com.ibatis" value="DEBUG" />
+    <logger name="com.ibatis.common.jdbc.SimpleDataSource" value="DEBUG" />
+    <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG" />
+    <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate"
+            value="DEBUG" />
+    <logger name="com.apache.ibatis" level="TRACE" />
+
+
+
+    <!-- root级别 DEBUG -->
+    <root level="debug">
+        <!-- 控制台输出 -->
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
