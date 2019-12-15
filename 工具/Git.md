@@ -52,7 +52,7 @@
 6. git check-ignore -v 文件名 查看忽略规则
 7. git add -f 文件名 强制将文件提交
 
-### git创建项目仓库
+## git创建项目仓库
 
 将已有代码传到新仓库：
 
@@ -62,6 +62,24 @@ git add .
 git commit -m ""
 git remote add origin ssh@
 git push -u origin master
+```
+
+## git提交本地代码
+
+```shell
+git status
+git add .
+git commit -am ""
+git push
+```
+
+## git更新代码到本地
+
+```shell
+# 本地没有仓库，直接全部拉取
+git clone
+# 本地代码落后，将更新的代码拉取到本地
+git pull -u origin master:master
 ```
 
 ### 忽略已加入到版本库中的文件

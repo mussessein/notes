@@ -1,0 +1,18 @@
+# RabbitMQ配置
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672      # 默认5672
+    username: guest
+    password: guest
+    virtual-host: / # 默认 /
+    listener:
+      simple:
+        concurrency: 10     # 消费者并发量
+        max-concurrency: 20 # 消费者最大并发量
+        prefetch: 50        # 每个消费者同一时刻拉取的消息条数
+logging:
+  level:
+    org:
+      springframework: INFO
+    com.rabbitmq: INFO
