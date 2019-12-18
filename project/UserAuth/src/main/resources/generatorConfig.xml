@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--找到.properties文件-->
+    <!--我们如果用maven插件运行MyBatis-gennerator，就需要配置此项-->
+    <classPathEntry location="mysql-connector-java-5.1.48.jar"/>
+    <context id="default" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 创建class的时候，是否去除自动生成的注释-->
+            <property name="suppressDate" value="true" />
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- 数据库连接 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/db_user_auth?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+        <!--默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer
+            true，把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!--targetPackage生成目标存放位置，targetProject生成目标存在的项目位置-->
+        <javaModelGenerator targetPackage="com.userauth.entity" targetProject="./src/main/java">
+            <!--是否允许子包 -->
+            <property name="enableSubPackages" value="false"/>
+            <!--是否添加构造函数 -->
+            <property name="constructorBased" value="true"/>
+            <!-- 从数据库返回的值被清理前后的空格  -->
+            <property name="trimStrings" value="true" />
+            <!--建立的对象是否不可改变。即没有setter方法-->
+            <property name="immutable" value="false" />
+        </javaModelGenerator>
+        <!--mapper映射文件生成所在目录，对每一个表生成对应的mapper.xml文件  -->
+        <sqlMapGenerator targetPackage="mappers" targetProject="./src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <!-- 生成对应的Mapper接口类文件，即dao接口文件 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.userauth.mapper" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!--生成全部表tableName设为%-->
+        <table tableName="%" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false"></table>
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,96 @@
+# 应用端配置
+server:
+  port: 8084
+  servlet:
+    context-path: /userAuth
+# log配置
+logging:
+  level:
+    io: info
+    org: INFO
+    com.fasterxml.jackson: INFO
+    com.userauth: INFO
+    com.userauth.mapper: DEBUG  # 打印sql日志，排查错误
+# spring配置
+spring:
+  main:
+    allow-bean-definition-overriding: true  # 相同名字的bean覆盖注册
+  profiles:
+    active: dev
+  # druid连接池配置
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/db_user_auth?useUnicode=true&amp;characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+      username: root
+      password: "123456"
+      # 数据源其他配置
+      initialSize: 5  # 初始化连接池的个数
+      minIdle: 5      # 连接池最小连接数量
+      maxActive: 20   # 最大连接储量
+      maxWait: 60000  # 获取连接的最大等待时间ms
+      timeBetweenEvictionRunsMillis: 60000  #配置间隔多久才进行一次检测，检测需要关闭的空闲连接ms
+      minEvictableIdleTimeMillis: 300000
+      maxPoolPreparedStatementPerConnectionSize: 20
+      # 缓存，mysql建议关闭
+      poolPreparedStatements: false
+      # 下面四个是检测连接是否有效
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false   # true会降低性能，增加安全性
+      testOnReturn: false   # true会降低性能，增加安全性
+      # 监控配置'wall'用于防火墙
+      filters: stat,wall
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      # Druid监控配置
+      filter:
+        # StatFilter:用于监控
+        stat:
+          enabled: true
+          db-type: mysql
+          log-slow-sql: true
+          slow-sql-millis: 5000
+        # WallFilter：用于防火墙
+        wall:
+          enabled: true
+          db-type: mysql
+          config:
+            delete-allow: false
+            drop-table-allow: false
+      web-stat-filter:
+        enabled: true
+        url-pattern: "/*"
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+  # jackson格式
+  jackson:
+    date-format: "yyyy-MM-dd HH:mm:ss"
+    time-zone: "GMT-8"
+  # redis配置
+  redis:
+    host: "localhost"
+    port: 6379
+    timeout: 5000
+    jedis:
+      pool:
+        max-idle: 8
+        min-idle: 0
+        max-active: 8
+        max-wait: -1
+  session:
+    store-type: redis
+  # 前端模板引擎
+  freemarker:
+    cache: false
+    charset: "UTF-8"
+    suffix: ".html"
+    request-context-attribute: "request"
+    template-loader-path: "classpath:/templates"
+# mybatis
+mybatis:
+  config-location: "classpath:mybatis-config.xml"
+  check-config-location: true
+  mapper-locations: "classpath:mappers/*.xml"
+  type-aliases-package: "com.userauth.entity"
+
+

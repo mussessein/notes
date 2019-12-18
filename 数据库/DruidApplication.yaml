@@ -1,0 +1,44 @@
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/db_user_auth?useUnicode=true&amp;characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: "123456"
+      # 数据源其他配置
+      initialSize: 5  # 初始化连接池的个数
+      minIdle: 5      # 连接池最小连接数量
+      maxActive: 20   # 最大连接储量
+      maxWait: 60000  # 获取连接的最大等待时间ms
+      timeBetweenEvictionRunsMillis: 60000  #配置间隔多久才进行一次检测，检测需要关闭的空闲连接ms
+      minEvictableIdleTimeMillis: 300000
+      maxPoolPreparedStatementPerConnectionSize: 20
+      # 缓存，mysql建议关闭
+      poolPreparedStatements: false
+      # 下面四个是检测连接是否有效
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false   # true会降低性能，增加安全性
+      testOnReturn: false   # true会降低性能，增加安全性
+      # 监控配置'wall'用于防火墙
+      filters: stat,wall
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      # Druid监控配置
+      filter:
+        # StatFilter:用于监控
+        stat:
+          enabled: true
+          db-type: mysql
+          log-slow-sql: true
+          slow-sql-millis: 5000
+        # WallFilter：用于防火墙
+        wall:
+          enabled: true
+          db-type: mysql
+          config:
+            delete-allow: false
+            drop-table-allow: false
+      web-stat-filter:
+        enabled: true
+        url-pattern: "/*"
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
