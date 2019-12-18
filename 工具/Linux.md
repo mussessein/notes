@@ -1,20 +1,44 @@
 # Linux
 
-## 端口
+## 防火墙端口
 
-#### lsof
+CentOS 7 版本（阿里云服务器开放端口之后，还需要在设置中添加端口访问）
 
-根据**PID**查看进程
-
-deepin中：100以下的端口，需要root权限访问
-
-查看端口占用情
+### 防火墙状态
 
 ```shell
-$ lsof -i:prot
-$ lsof -i | grep port
-# 如果有显示端口，则已经开放，如果没有消息，则没有开放
+# 查看防火墙状态
+systemctl status firewalld
+# 关闭打开防火墙
+systemctl start/stop firewalld
+# 重启保持防火墙状态
+systemctl enable firewalld
 ```
+
+### 开放端口
+
+```shell
+firewall-cmd --zone=public --add-port=8080/tcp --permanent
+# 记得刷新规则
+firewall-cmd --reload
+```
+
+### 查看端口
+
+```shell
+#查看已开放的所有端口
+firewall-cmd --list-ports
+# 查看已开放端口
+firewall-cmd --zone=public --query-port=8080/tcp
+```
+
+### 关闭端口
+
+```shell
+firewall-cmd --zone=public --remove-port=8080/tcp --permanent
+```
+
+## 进程
 
 #### netstat
 
@@ -28,8 +52,6 @@ $ netstat
 -n：不进行DNS轮寻（可以加速操作）
 $ netstat -lnp|grep 22 	# 查看所有22端口使用情况
 ```
-
-## 进程
 
 #### ps
 
@@ -45,15 +67,6 @@ $ netstat -lnp|grep 22 	# 查看所有22端口使用情况
 $ ps -ef | grep -i redis # 查看redis进程
 ```
 
-#### top
-
-实时显示进程，可以查看内存占用情况
-
-```
-top
--i 不显示任何闲置
-```
-
 #### kill
 
 杀死进程
@@ -67,6 +80,33 @@ kill -9 进程id  # 强制终止进程
 ```shell
 $ sudo iptables -I INPUT -i eth0 -p tcp --dport 22 -j ACCEPT
 ```
+
+## 内存管理
+
+### top—查看内存占用
+
+```shell
+# top排序策略
+top -N	# 按PID大小
+top -P	# 按CPU占用率
+top -M	# 按内存占用率
+```
+
+```shell
+PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
+1417 root     10 -10  128712  15124   9312 S  1.3  0.8   1:59.10 AliYunDun
+3002 root     20   0  859212  67128  16640 S  0.3  3.6   0:10.63 code-server
+1 root      20   0  125168   3696   2448 S  0.0  0.2   0:01.07 systemd
+```
+
+- PID
+- USER
+- PR
+- VIRT： 虚拟内存
+- RES： 常驻内存
+- SHR： 共享内存
+- %CPU
+- %MEM
 
 ## 服务管理
 
