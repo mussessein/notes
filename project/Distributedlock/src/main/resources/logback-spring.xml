@@ -6,14 +6,18 @@
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <!-- 定义日志文件 输入位置 -->
     <property name="log_dir" value="./logs" />
+    <property name="log_file" value="distribute_logs_"/>
     <!-- 日志最大的历史 30天 -->
     <property name="maxHistory" value="1" />
     <property name="maxFileSize" value="10MB" />
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <encoder>
-                <pattern>%d{yyyy-MM-dd HH:mm:ss} ----> [%thread] ---> %-5level %logger{50} - %msg%n</pattern>
-            </encoder>
+            <springProfile name="dev">
+                <pattern>%d{yyyy-MM-dd HH:mm:ss}--->[%thread]--->%-5level %logger{50} - %msg%n</pattern>
+            </springProfile>
+            <springProfile name="!dev">
+                <pattern>%d{yyyy-MM-dd HH:mm:ss}===[%thread]===%-5level %logger{50} - %msg%n</pattern>
+            </springProfile>
         </layout>
     </appender>
     <!-- ERROR级别日志 -->
@@ -29,7 +33,7 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志输出文件 可相对和绝对路径 -->
             <fileNamePattern>
-                ${log_dir}/app_error.%d{yyyy-MM-dd}.%i.log
+                ${log_dir}/${log_file}_ERROR_%d{yyyy-MM-dd}_%i.log
             </fileNamePattern>
             <!--超出时间删除旧文件-->
             <maxHistory>${maxHistory}</maxHistory>
@@ -65,7 +69,7 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 按天回滚 daily -->
             <fileNamePattern>
-                ${log_dir}/app_warn.%d{yyyy-MM-dd}.%i.log
+                ${log_dir}/${log_file}_WARN_%d{yyyy-MM-dd}_%i.log
             </fileNamePattern>
             <!-- 日志最大的历史 30天 -->
             <maxHistory>${maxHistory}</maxHistory>
@@ -89,7 +93,7 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 按天回滚 daily -->
             <fileNamePattern>
-                ${log_dir}/app_info.%d{yyyy-MM-dd}.%i.log
+                ${log_dir}/${log_file}_INFO_%d{yyyy-MM-dd}_%i.log
             </fileNamePattern>
             <!-- 日志最大的历史 30天 -->
             <maxHistory>${maxHistory}</maxHistory>
@@ -114,7 +118,7 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 按天回滚 daily -->
             <fileNamePattern>
-                ${log_dir}/app_debug.%d{yyyy-MM-dd}.%i.log
+                ${log_dir}/${log_file}_DEBUG_%d{yyyy-MM-dd}_%i.log
             </fileNamePattern>
             <!-- 日志最大的历史 30天 -->
             <maxHistory>${maxHistory}</maxHistory>
@@ -138,7 +142,7 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 按天回滚 daily -->
             <fileNamePattern>
-                ${log_dir}/app_trace.%d{yyyy-MM-dd}.%i.log
+                ${log_dir}/${log_file}_TRACE_%d{yyyy-MM-dd}_%i.log
             </fileNamePattern>
             <!-- 日志最大的历史 30天 -->
             <maxHistory>${maxHistory}</maxHistory>
@@ -156,12 +160,6 @@
     <logger name="java.sql.PreparedStatement" value="DEBUG" />
     <logger name="java.sql.Connection" value="DEBUG" />
     <logger name="java.sql.Statement" value="DEBUG" />
-    <logger name="com.ibatis" value="DEBUG" />
-    <logger name="com.ibatis.common.jdbc.SimpleDataSource" value="DEBUG" />
-    <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG" />
-    <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate"
-            value="DEBUG" />
-    <logger name="com.apache.ibatis" level="TRACE" />
 
     <!-- root级别 DEBUG -->
     <root level="debug">

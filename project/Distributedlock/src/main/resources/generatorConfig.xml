@@ -5,7 +5,7 @@
 <generatorConfiguration>
     <!--找到.properties文件-->
     <!--我们如果用maven插件运行MyBatis-gennerator，就需要配置此项-->
-    <classPathEntry location="mysql-connector-java-5.1.48.jar"/>
+    <classPathEntry location="C:\Users\whr\.m2\repository\mysql\mysql-connector-java\5.1.48\mysql-connector-java-5.1.48.jar"/>
     <context id="default" targetRuntime="MyBatis3">
         <commentGenerator>
             <!-- 创建class的时候，是否去除自动生成的注释-->
@@ -14,7 +14,7 @@
         </commentGenerator>
         <!-- 数据库连接 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/db_second_kill?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/db_distribute_lock?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull"
                         userId="root"
                         password="123456">
         </jdbcConnection>
@@ -24,7 +24,7 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
         <!--targetPackage生成目标存放位置，targetProject生成目标存在的项目位置-->
-        <javaModelGenerator targetPackage="com.secondkill.entity" targetProject="./src/main/java">
+        <javaModelGenerator targetPackage="com.example.lock.entity" targetProject="./src/main/java">
             <!--是否允许子包 -->
             <property name="enableSubPackages" value="false"/>
             <!--是否添加构造函数 -->
@@ -39,7 +39,7 @@
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
         <!-- 生成对应的Mapper接口类文件，即dao接口文件 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.secondkill.mapper" targetProject="./src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.lock.mapper" targetProject="./src/main/java">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <!--生成全部表tableName设为%-->
