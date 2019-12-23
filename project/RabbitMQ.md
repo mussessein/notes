@@ -109,7 +109,20 @@ Topic Exchange会根据Binding关系，将routing key进行模糊匹配，发送
 
 ## 确认机制
 
-### 发送者确认
+ https://www.cnblogs.com/haixiang/p/10900005.html 
+
+### Producer端
+
+Producer端会有一个Listener监听器，接收投递状态的消息；
+
+producer端的消息投递有两种状态：confirm，return
+
+**confrm**，消息送到broker可能产生两个状态：
+
+- ack：消息成功投递
+- nack：消息被拒
+
+**return**，消息被broker接收之后，没匹配到合适的队列，就返回给了producer，也叫做死信；
 
 开启发送者确认机制回调：**异步确认消息发送到RabbitMQ中**
 
@@ -150,6 +163,8 @@ spring.rabbitmq.listener.simple.acknowledge-mode = manual,auto,none
 
 
 ## 消息限流
+
+
 
 ## TTL
 
@@ -198,11 +213,68 @@ RabbitMQ 使用**发送方确认模式**，确保消息正确地发送到 Rabbit
 
 ## RabbitMQ面试
 
+### 消息队列的作用与使用场景
+
+**场景1：用户注册+邮件通知注册成功+发送短讯通知注册成功**
+
+串行：三个动作串行执行，最后页面返回用户注册成功===>耗时150ms（基本不会用）
+
+并行：首先用户注册，写入数据库，然后启动两个并行线程分别执行邮件和短信，再返回用户注册成功====>耗时100ms；
+
+消息队列：用户注册，写入数据库成功，直接返回用户注册成功===>耗时50ms
+
+​				   发送用户消息到消息队列，消费者模块监听队列，异步处理邮件发送，短讯发送的逻辑；
+
+**场景2：应用解耦===>订单系统，库存系统**
+
+传统：订单系统调用库存系统接口，弊端：库存系统故障，订单系统失败（不应该如此，无论如何业务不能中断）
+
+消息队列：订单系统下单之后，写入消息到消息队列（持久化消息），直接返回用户下单成功，
+
+​					库存系统异步监听队列，即使库存系统挂了，消息没有丢失，重启，仍能执行库存操作；
+
+**场景3：流量削峰===>秒杀活动**
+
+秒杀开始瞬间，大量请求，如果直接进入后端，会挂掉；
+
+秒杀活动，流量大，但是有效流量小，需要拦截掉大量无效流量，使得高于有效流量，又不至于过大流量，进入后端；这就需要消息队列；
+
+### 无法被路由的消息去了哪里
+
+routing key没有正确绑定，造成消息无法发送给对应的队列；
+
+- 使用 **mandatory** 参数：
+
+  `mandatory = true` 表示当交换器无法根据routingKey发送消息时，会调用 **Basic.Return** 命令将消息返回给生产者，生产者通过监听 **RetrunListener** 来接收没有被路由的消息；
+
+  `mandatory = false` 默认丢弃无法路由的消息
+
+- 使用备份 **Exchange**：
+
+  ` "alternate-exchange",AE ` 配置添加到Channel配置中，这样无法路由的消息发送给备份交换器，再次路由，此交换器一般为`fanout`
+
+SpringBoot中，配置RabbitTeplate
+
+~~~java
+// 确认回调（消息发送到Exchange，调用此方法确认）
+rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
+    @Override
+    public void confirm(CorrelationData correlationData, boolean ack, String cause) {
+        log.info("消息发送成功==>correlationData({}),ack({}),cause({})", correlationData, ack, cause);
+    }
+});
+// 消息丢失（消息无法正确路由，主动丢弃，返回给生产者，调用此方法）
+rabbitTemplate.setReturnCallback(new RabbitTemplate.ReturnCallback() {
+    @Override
+    public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
+        log.info("消息丢失==>exchange({}),route({}),replyCode({}),replyText({}),message:{}",exchange,routingKey,replyCode,replyText,message);
+    }
+});
+~~~
+
+
+
 ```
-1.消息队列的作用与使用场景
-
-2.多个消费者监听一个队列时，消息如何分发
-
 3.无法被路由的消息去了哪里
 
 4.消息在什么时候会变成Dead Letter（死信）

@@ -6,7 +6,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
- *
+ * 同前端约定的用户信息
  **/
 @Data
 public class UserDto {

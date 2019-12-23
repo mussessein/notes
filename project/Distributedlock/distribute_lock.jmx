@@ -43,7 +43,7 @@
           <boolProp name="recycle">true</boolProp>
           <stringProp name="shareMode">shareMode.all</stringProp>
           <boolProp name="stopThread">false</boolProp>
-          <stringProp name="variableNames">stock</stringProp>
+          <stringProp name="variableNames">userName</stringProp>
         </CSVDataSet>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="positive_lock" enabled="true">
@@ -53,10 +53,9 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	&quot;id&quot;: 1,&#xd;
-	&quot;stock&quot;: ${stock}&#xd;
-}&#xd;
-</stringProp>
+	&quot;userName&quot;:&quot;${userName}&quot;,&#xd;
+	&quot;email&quot;:&quot;gdx@163.com&quot;&#xd;
+}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -65,7 +64,7 @@
           <stringProp name="HTTPSampler.port">8080</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/distribute/datalock/update_3</stringProp>
+          <stringProp name="HTTPSampler.path">/distribute/user/register</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>

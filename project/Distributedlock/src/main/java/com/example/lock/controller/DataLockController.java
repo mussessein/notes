@@ -36,7 +36,7 @@ public class DataLockController {
      * 2. 库存数量大于 实际数量
      */
     @PostMapping(value = "/update_1",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public BaseResponse dataBasePositiveV1(@RequestBody @Validated ProductLockDto dto, BindingResult bindingResult){
+    public BaseResponse updateStockV1(@RequestBody @Validated ProductLockDto dto, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return new BaseResponse(StatusCode.InvalidParam);
         }
@@ -61,7 +61,7 @@ public class DataLockController {
      * （2）不一致，则不更新
      */
     @PostMapping(value = "/update_2",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public BaseResponse dataBasePositiveV2(@RequestBody @Validated ProductLockDto dto, BindingResult bindingResult){
+    public BaseResponse updateStockV2(@RequestBody @Validated ProductLockDto dto, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return new BaseResponse(StatusCode.InvalidParam);
         }
@@ -84,7 +84,7 @@ public class DataLockController {
      *
      */
     @PostMapping(value = "/update_3",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public BaseResponse dataBasePositiveV3(@RequestBody @Validated ProductLockDto dto, BindingResult bindingResult){
+    public BaseResponse updateStockV3(@RequestBody @Validated ProductLockDto dto, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return new BaseResponse(StatusCode.InvalidParam);
         }
@@ -92,6 +92,69 @@ public class DataLockController {
         try {
             log.debug("悲观锁数据：{} ",dto);
             int res = dataLockService.updateStock_3(dto);
+            if (res <= 0) {
+                return new BaseResponse(StatusCode.Fail);
+            }
+        }catch (Exception e){
+            log.error("发生异常：",e.fillInStackTrace());
+            response=new BaseResponse(StatusCode.Fail);
+        }
+        return response;
+    }
+    /**
+     * 分布式锁——redis
+     */
+    @PostMapping(value = "/update_4",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public BaseResponse updateStockV4(@RequestBody @Validated ProductLockDto dto, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return new BaseResponse(StatusCode.InvalidParam);
+        }
+        BaseResponse response=new BaseResponse(StatusCode.Ok);
+        try {
+            log.debug("分布式锁Redis数据：{} ",dto);
+            int res = dataLockService.updateStock_4(dto);
+            if (res <= 0) {
+                return new BaseResponse(StatusCode.Fail);
+            }
+        }catch (Exception e){
+            log.error("发生异常：",e.fillInStackTrace());
+            response=new BaseResponse(StatusCode.Fail);
+        }
+        return response;
+    }
+    /**
+     * 分布式锁——zookeeper
+     */
+//    @PostMapping(value = "/update_5",consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public BaseResponse updateStockV5(@RequestBody @Validated ProductLockDto dto, BindingResult bindingResult){
+//        if (bindingResult.hasErrors()){
+//            return new BaseResponse(StatusCode.InvalidParam);
+//        }
+//        BaseResponse response=new BaseResponse(StatusCode.Ok);
+//        try {
+//            log.debug("分布式锁Zookeeper数据：{} ",dto);
+//            int res = dataLockService.updateStock_5(dto);
+//            if (res <= 0) {
+//                return new BaseResponse(StatusCode.Fail);
+//            }
+//        }catch (Exception e){
+//            log.error("发生异常：",e.fillInStackTrace());
+//            response=new BaseResponse(StatusCode.Fail);
+//        }
+//        return response;
+//    }
+    /**
+     * 分布式锁——Redisson
+     */
+    @PostMapping(value = "/update_6",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public BaseResponse updateStockV6(@RequestBody @Validated ProductLockDto dto, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return new BaseResponse(StatusCode.InvalidParam);
+        }
+        BaseResponse response=new BaseResponse(StatusCode.Ok);
+        try {
+            log.debug("分布式锁Redisson数据：{} ",dto);
+            int res = dataLockService.updateStock_6(dto);
             if (res <= 0) {
                 return new BaseResponse(StatusCode.Fail);
             }

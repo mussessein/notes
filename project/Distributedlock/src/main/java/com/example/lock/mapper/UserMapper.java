@@ -1,6 +1,7 @@
 package com.example.lock.mapper;
 
 import com.example.lock.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +15,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    User selectByUserName(@Param("userName") String userName);
 }

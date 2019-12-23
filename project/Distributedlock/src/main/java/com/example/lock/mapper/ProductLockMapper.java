@@ -23,4 +23,5 @@ public interface ProductLockMapper {
     ProductLock selectByIdNegative(@Param(value = "id") Integer id);
     int updateStock_3(ProductLock lock);
 
+
 }

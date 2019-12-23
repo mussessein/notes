@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--生产配置文件，不需要输出到控制台，只输出到指定的日志文件中，并按照一定规则滚动/删除-->
+<!--这里按照日志级别，分别记录日志-->
+
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!-- 定义日志文件 输入位置 -->
+    <property name="log_dir" value="./logs" />
+    <!-- 日志最大的历史 30天 -->
+    <property name="maxHistory" value="1" />
+    <property name="maxFileSize" value="10MB" />
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <springProfile name="dev">
+                <pattern>%d{yyyy-MM-dd HH:mm:ss} ----> [%thread] ---> %-5level %logger{50} - %msg%n</pattern>
+            </springProfile>
+            <springProfile name="!dev">
+                <pattern>%d{yyyy-MM-dd HH:mm:ss} ==== [%thread] ==== %-5level %logger{50} - %msg%n</pattern>
+            </springProfile>
+        </layout>
+    </appender>
+    <!-- ERROR级别日志 -->
+    <!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件 RollingFileAppender -->
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录WARN级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!-- 最常用的滚动策略，它根据时间来制定滚动策略.既负责滚动也负责出发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志输出文件 可相对和绝对路径 -->
+            <fileNamePattern>
+                ${log_dir}/app_error.%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <!--超出时间删除旧文件-->
+            <maxHistory>${maxHistory}</maxHistory>
+            <!--超出时间删除旧文件-->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+
+        </rollingPolicy>
+
+
+        <!-- 按照固定窗口模式生成日志文件，当文件大于20MB时，生成新的日志文件。窗口大小是1到3，当保存了3个归档文件后，将覆盖最早的日志。
+            <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${log_dir}/%d{yyyy-MM-dd}/.log.zip</fileNamePattern> <minIndex>1</minIndex>
+            <maxIndex>3</maxIndex> </rollingPolicy> -->
+        <!-- 查看当前活动文件的大小，如果超过指定大小会告知RollingFileAppender 触发当前活动文件滚动 <triggeringPolicy
+            class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy"> <maxFileSize>5MB</maxFileSize>
+            </triggeringPolicy> -->
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- WARN级别日志 appender -->
+    <appender name="WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录WARN级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 按天回滚 daily -->
+            <fileNamePattern>
+                ${log_dir}/app_warn.%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <!-- 日志最大的历史 30天 -->
+            <maxHistory>${maxHistory}</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- INFO级别日志 appender -->
+    <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录INFO级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 按天回滚 daily -->
+            <fileNamePattern>
+                ${log_dir}/app_info.%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <!-- 日志最大的历史 30天 -->
+            <maxHistory>${maxHistory}</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- DEBUG级别日志 appender -->
+    <appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录DEBUG级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 按天回滚 daily -->
+            <fileNamePattern>
+                ${log_dir}/app_debug.%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <!-- 日志最大的历史 30天 -->
+            <maxHistory>${maxHistory}</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- TRACE级别日志 appender -->
+    <appender name="TRACE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只记录ERROR级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>TRACE</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 按天回滚 daily -->
+            <fileNamePattern>
+                ${log_dir}/app_trace.%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <!-- 日志最大的历史 30天 -->
+            <maxHistory>${maxHistory}</maxHistory>
+
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${maxFileSize}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--设置每个目录的日志level-->
+    <logger name="java.sql.PreparedStatement" value="DEBUG" />
+    <logger name="java.sql.Connection" value="DEBUG" />
+    <logger name="java.sql.Statement" value="DEBUG" />
+    <logger name="com.ibatis" value="DEBUG" />
+    <logger name="com.ibatis.common.jdbc.SimpleDataSource" value="DEBUG" />
+    <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG" />
+    <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate"
+            value="DEBUG" />
+    <logger name="com.apache.ibatis" level="TRACE" />
+
+    <!-- root级别 DEBUG -->
+    <root level="debug">
+        <!-- 文件输出 -->
+        <appender-ref ref="ERROR" />
+        <appender-ref ref="INFO" />
+        <appender-ref ref="WARN" />
+        <appender-ref ref="DEBUG" />
+        <appender-ref ref="TRACE" />
+        <appender-ref ref="stdout"/>
+    </root>
+</configuration>

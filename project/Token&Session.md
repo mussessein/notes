@@ -275,10 +275,6 @@ public RedisManager redisManager(){
 }
 ```
 
-
-
-
-
 ### 登录认证
 
 1. 通过POST请求，拿到userName，password，认证的逻辑交由给shiro
