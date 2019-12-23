@@ -3,11 +3,13 @@ package com.example.lock.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.Date;
+
+/**
+ * 抢单记录表
+ * 抢的就是mobile手机号
+ */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class CrmOrder {
     private Integer id;
 

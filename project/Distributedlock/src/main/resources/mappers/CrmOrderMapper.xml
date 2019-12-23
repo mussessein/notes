@@ -105,4 +105,13 @@
       is_active = #{isActive,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="countByMobile" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT
+    COUNT(id)
+    FROM crm_order
+    WHERE
+    mobile=#{mobile}
+    AND
+    is_active = 1
+  </select>
 </mapper>

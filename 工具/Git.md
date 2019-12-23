@@ -129,5 +129,49 @@ $ git merge temp
 $ git branch -d temp
 ```
 
+## git项目添加小组成员
 
+https://www.jianshu.com/p/0f23e290e874
+
+
+
+## 分支提交
+
+多人维护同一个项目，每个人应当有一个分支，在分支中进行push，最后合并代码；
+
+### 1. 新建分支
+
+```shell
+git branch xxx（个人分支）
+# 查看所有分支
+git branch -a
+```
+
+### 2. 修改或添加代码之后
+
+```shell
+git add . 
+git commit -m "comments"
+```
+
+### 3. 提交本地代码到分支
+
+```shell
+git push origin xxx (xxx为分支名称)
+```
+
+## 分支合并到主干
+
+master端合并分支
+
+```shell
+# 查看所有分支
+git branch -a
+# checkout分支
+git checkout master
+# 合并——>这里可能报错，代码冲突CONFLICT
+git merge xxx （分支）
+# 完成之后push
+git push origin master
+```
 
