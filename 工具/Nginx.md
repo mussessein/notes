@@ -80,9 +80,9 @@ http {
     keepalive_timeout  65;		# 连接超时时间
     server {
             listen       80;	# 监听端口
-            server_name  域名;
+            server_name  域名;   # 监听的域名
             location / {		# location：用于反向代理
-                proxy_pass http://127.0.0.1:8086;	# 将监听端口转发到这里
+                proxy_pass http://127.0.0.1:8086;	# 要访问的域名转发到这里
                 root   html;
                 index  index.html index.htm;
             }
@@ -96,5 +96,40 @@ http {
 
 
 
+## 反向代理多个二级域名
 
+通过配置多个server将不同的二级域名，转发到不同的端口；
+
+```yaml
+server {
+    listen 80;
+    server_name gitlab.tricker.org;
+
+    location / {
+        proxy_pass       http://127.0.0.1:8888;
+    }
+}
+server {
+    listen 80;
+    server_name registry.tricker.org;
+
+    location / {
+        proxy_pass       http://127.0.0.1:5555;
+    }
+}
+.......
+```
+
+
+
+## 报错
+
+nginx: [error] invalid PID number "" in "/usr/local/var/run/nginx/nginx.pid"
+
+**解决办法：**
+
+```shell
+$ sudo nginx -c /usr/local/etc/nginx/nginx.conf
+$ sudo nginx -s reload
+```
 
