@@ -101,9 +101,43 @@ public class SchedulerConfig {
 
 @NotBlank： 只能作用在String上，不能为null，而且调用trim()后，长度必须大于0 
 
+## @RequestBody
 
+@RequestBody和@RequestParam的区别：
 
-## @RequestBody @Validated 
+https://blog.csdn.net/weixin_38004638/article/details/99655322
+
+既然是Body，接受的是整个Json
+
+- Content-Type：application/json
+- 接口参数不可接受基本数据类型，必须是对象；
+- 只能用于POST请求
+
+比如：
+
+```json
+{
+    "name": "jack",
+    "age": "12"
+}
+```
+
+会将请求体（RequstBody）中的数据，封装为接口参数所接收的对象user
+
+```java
+@PostMapping(value = "/info")
+public BaseResponse info(@RequestBody User user) {...}
+```
+
+## @RequestParam
+
+Param顾名思义是参数，可以是一个基本数据类型的值；
+
+- 可以用于POST，GET请求
+- 接口参数接受基本数据类型，也可以是对象；
+- 不支持批量json数据；
+
+## @Validated 
 
 以上两个注解一般配合使用，并且搭配@NotBlank的JavaBean
 

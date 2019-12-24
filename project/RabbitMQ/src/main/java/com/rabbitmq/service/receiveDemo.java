@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class receiveDemo {
+
+
     @RabbitListener(queues = "${mq.queue}", containerFactory = "singleListenerContainer")
     public void testReceive(Object o) {
         log.info("Receive:{}",o);

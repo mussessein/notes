@@ -131,9 +131,7 @@ public BaseResponse updatePassword(@RequestHeader String accessToken,
 }
 ```
 
-```
-
-```
+## 
 
 ## @Transactional
 
