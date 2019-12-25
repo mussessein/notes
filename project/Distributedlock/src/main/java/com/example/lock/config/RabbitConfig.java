@@ -1,4 +1,4 @@
-package com.rabbitmq.config;
+package com.example.lock.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.*;
@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.amqp.SimpleRabbitListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
 /**
@@ -23,6 +24,7 @@ import org.springframework.core.env.Environment;
  * 4. 交换器
  */
 @Configuration
+@PropertySource("classpath:rabbitmq.properties")
 @Slf4j
 public class RabbitConfig {
     @Autowired
@@ -32,14 +34,12 @@ public class RabbitConfig {
 
     @Autowired
     private CachingConnectionFactory connectionFactory;
+    @Autowired
+    private SimpleRabbitListenerContainerFactoryConfigurer factoryConfigurer;
     /**
      * 配置消息转化器为Json格式
      * @return
      */
-    @Bean
-    public MessageConverter messageConverter(){
-        return new Jackson2JsonMessageConverter();
-    }
 
     @Bean(name = "singleListenerContainer")
     public SimpleRabbitListenerContainerFactory listenerContainerFactory(){
@@ -53,12 +53,29 @@ public class RabbitConfig {
         simpleContainerFactory.setBatchSize(1);
         return simpleContainerFactory;
     }
+
+    /**
+     * 多个消费者
+     * @return
+     */
+    @Bean(name = "multiListenerContainer")
+    public SimpleRabbitListenerContainerFactory multiListenerContainer(){
+        SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
+        factoryConfigurer.configure(factory,connectionFactory);
+        factory.setMessageConverter(new Jackson2JsonMessageConverter());
+        factory.setAcknowledgeMode(AcknowledgeMode.NONE);
+        factory.setConcurrentConsumers(env.getProperty("spring.rabbitmq.listener.concurrency",int.class));
+        factory.setMaxConcurrentConsumers(env.getProperty("spring.rabbitmq.listener.max-concurrency",int.class));
+        factory.setPrefetchCount(env.getProperty("spring.rabbitmq.listener.prefetch",int.class));
+        return factory;
+    }
     @Bean
     public RabbitTemplate rabbitTemplate(){
         connectionFactory.setPublisherConfirmType(CachingConnectionFactory.ConfirmType.SIMPLE);
         connectionFactory.setPublisherReturns(true);
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMandatory(true);
+        rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
         rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
             @Override
             public void confirm(CorrelationData correlationData, boolean ack, String cause) {
@@ -74,22 +91,38 @@ public class RabbitConfig {
         return rabbitTemplate;
     }
 
-    /**
-     * 自定义声明：
-     * 1. 队列
-     * 2. Exchange
-     * 3. Binding
-     */
+    //TODO：基本消息模型构建
+
     @Bean
-    public Queue successEmailQueue(){
-        return new Queue(env.getProperty("mq.queue"),true);
+    public DirectExchange basicExchange(){
+        return new DirectExchange(env.getProperty("basic.info.mq.exchange.name"), true,false);
     }
-    @Bean
-    public TopicExchange successEmailExchange(){
-        return new TopicExchange(env.getProperty("mq.exchange"),true,false);
+
+    @Bean(name = "basicQueue")
+    public Queue basicQueue(){
+        return new Queue(env.getProperty("basic.info.mq.queue.name"), true);
     }
+
     @Bean
-    public Binding successEmailBinding(){
-        return BindingBuilder.bind(successEmailQueue()).to(successEmailExchange()).with(env.getProperty("mq.routing.key"));
+    public Binding basicBinding(){
+        return BindingBuilder.bind(basicQueue()).to(basicExchange()).with(env.getProperty("basic.info.mq.routing.key.name"));
+    }
+
+
+    //TODO：抢单队列模型
+
+    @Bean
+    public TopicExchange crmOrderExchange(){
+        return new TopicExchange(env.getProperty("crm.order.mq.exchange.name"), true,false);
+    }
+
+    @Bean(name = "crmOrderQueue")
+    public Queue crmOrderQueue(){
+        return new Queue(env.getProperty("crm.order.mq.queue.name"), true);
+    }
+
+    @Bean
+    public Binding crmOrderBinding(){
+        return BindingBuilder.bind(crmOrderQueue()).to(crmOrderExchange()).with(env.getProperty("crm.order.mq.routing.key.name"));
     }
 }

@@ -16,7 +16,4 @@ public class AnnotationTest {
     public void receive(Object o){
         log.info("Receive:{}",o);
     }
-
-
-
 }
