@@ -8,8 +8,6 @@ import org.springframework.context.annotation.PropertySource;
 
 
 @SpringBootApplication
-//@PropertySource(value = {"classpath:zookeeper.properties"})
-@PropertySource("classpath:redisson.properties")
 @MapperScan(value = "com.example.lock.mapper")
 public class LockApplication {
 

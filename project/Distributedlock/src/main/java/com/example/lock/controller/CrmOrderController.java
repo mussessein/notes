@@ -3,6 +3,7 @@ package com.example.lock.controller;
 import com.example.lock.dto.RobbingDto;
 import com.example.lock.entity.User;
 import com.example.lock.mapper.UserMapper;
+import com.example.lock.rabbitmq.RabbitMQService;
 import com.example.lock.response.BaseResponse;
 import com.example.lock.response.StatusCode;
 import com.example.lock.service.CrmOrderService;
@@ -29,7 +30,8 @@ public class CrmOrderController {
     private UserMapper userMapper;
     @Autowired
     private CrmOrderService crmOrderService;
-
+    @Autowired
+    private RabbitMQService rabbitMQService;
     @PostMapping("/robbing")
     public BaseResponse robbing(@RequestBody @Validated RobbingDto dto,BindingResult bindingResult) {
         BaseResponse response = new BaseResponse(StatusCode.Success);
@@ -42,16 +44,16 @@ public class CrmOrderController {
                 return new BaseResponse(StatusCode.UserNameExist);
             }else {
                 // 用户存在，可以抢单
-                int res =crmOrderService.robbingV3(dto);
-                if (res>0){
-                    return response;
-                }
+                // int res =crmOrderService.robbingV3(dto);
+
+                // 消息发送至MQ，达到限流的效果
+                rabbitMQService.sendCrmOrderInfo(dto);
             }
         }catch (Exception e){
             log.error("Robbing Failed => {}",e.getMessage());
             response=new BaseResponse(StatusCode.Fail);
         }
-        return new BaseResponse(StatusCode.Fail);
+        return response;
     }
 }
 

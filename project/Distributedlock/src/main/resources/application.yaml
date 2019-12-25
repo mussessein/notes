@@ -12,9 +12,11 @@ logging:
   file:
     path: "classpath:logback-spring.xml"
 spring:
+# jackson
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+# druid datasource
   datasource:
     druid:
       url: jdbc:mysql://127.0.0.1:3306/db_distribute_lock?serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useSSL=false
@@ -51,9 +53,11 @@ spring:
         enabled: true
         url-pattern: "/*"
         exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+# redis
   redis:
     host: 127.0.0.1
     port: 6379
+# mybatis
 mybatis:
   check-config-location: true
   mapper-locations: "classpath:mappers/*.xml"
