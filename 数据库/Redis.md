@@ -2,7 +2,7 @@
 
  https://www.cnblogs.com/rjzheng/p/9096228.html 
 
-## 配置
+# 概述
 
 1. 安装
 
@@ -146,9 +146,15 @@ Redis的单线程如何保证其高性能？
    (nil)
    ```
 
-4. persist：移除key的过期时间；变成永久key
+4. PX：set的同时，设置过期时间
 
-## Redis数据类型
+5. NX：只在键不存在时，才对键进行设置操作。 
+
+6. persist：移除key的过期时间；变成永久key
+
+7. del key：删除key
+
+# Redis数据类型
 
 ### String
 
@@ -337,7 +343,7 @@ List的实现为一个双向链表，即可以支持反向查找和遍历；
 
 ## Redis数据结构
 
-## Redis过期策略
+# Redis过期策略
 
 Redis采用：**定期删除+惰性删除**来对过期的key进行处理；
 
@@ -361,7 +367,7 @@ Redis采用：**定期删除+惰性删除**来对过期的key进行处理；
 
 这就需要内存淘汰机制了；
 
-## Redis内存淘汰机制
+# Redis内存淘汰机制
 
 过期策略存在无法解决的key，可能导致redis内存耗尽；
 
@@ -379,7 +385,7 @@ maxmemory-policy volatile-lru
 - volatile-random：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，随机移除某个key（不推荐）
 - volatile-ttl：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，有更早过期时间的key优先移除；（不推荐）
 
-## Redis持久化机制
+# Redis持久化机制
 
 redis持久化功能可以避免进程退出造成的数据丢失问题，可以利用持久化的文件实现数据恢复
 
@@ -394,17 +400,27 @@ redis支持两种持久化：RDB（快照），AOF（日志），4.0之后引入
 
 如何保证Redis在响应请求的情况下，还能进行文件IO操作进行持久化？
 
-- Redis通过操作系统的COW（Copy On Right）机制，启动一个子进程来完成持久化的操作；
+- Redis通过操作系统的COW（Copy On Write）机制，启动一个子进程来完成持久化的操作；
 - 子进程和父进程共享内存数据，主进程继续处理请求；
 
 ### AOF
 
-- 日志是连续的增量备份
+特点：
 
-执行过程：
+- 日志是连续的增量备份，写入操作时append；
+- 日志记录的触发策略：（1）每秒同步（2）每次修改同步—修改自动触发同步，安全效率低；
+- Redis宕机，重启则重放日志的指令，完成数据恢复；
 
-- 当Redis接收到一个指令的时候，会先执行指令，指令没有问题的话，就将指令存入AOF日志文件中；
-- 长期运行，日志会不断扩大，如果Redis宕机，就会重放指令，非常耗时
+实现：
+
+修改配置文件：
+
+```
+appendonly：三个值（no，always，everysec）对应（不开启，修改同步，每秒）
+appendfilename "appendonly.aof"	# 日志文件位置
+```
+
+
 
 如何解决AOF日志扩大？—AOF重写
 
@@ -414,13 +430,7 @@ redis支持两种持久化：RDB（快照），AOF（日志），4.0之后引入
 
 RDB和AOF的缺点：
 
-
-
-
-
-
-
-## Redis事务
+# Redis事务
 
 https://www.cnblogs.com/DeepInThought/p/10720132.html
 
@@ -432,27 +442,54 @@ Redis事务本质是一系列命令的集合；
 
 - 一次性，顺序性，排他性的执行一个队列中的一系列命令；
 - Redis事务没有隔离级别的概念；
-- Redis事务不保证原子性，且没有回滚，任意指令执行失败，其余指令依然会执行；
+- 单个Redis实例在执行事务期间，不会响应其他客户端；
+- 
 
 ### 执行过程
 
-1. 开始事务
-2. 命令入队
-3. 执行事务
+1. 开始事务—multi
+2. 命令入队—多条命令
+3. 放弃事务—discard
+4. 执行事务—exec
 
-### 相关命令
+### 执行成功条件
 
+- 命令正确—执行成功
 
+- 命令性错误（不存在此命令）—exec执行失败
 
+  ```shell
+  127.0.0.1:6379> multi
+  OK
+  127.0.0.1:6379> set k2 v2
+  QUEUED
+  127.0.0.1:6379> setget
+  (error) ERR unknown command 'setget'
+  127.0.0.1:6379> exec
+  (error) EXECABORT Transaction discarded because of previous errors.
+  ```
 
+- 命令语法错误（命令正确，无法执行）—执行成功
 
+  ```shell
+  127.0.0.1:6379> multi
+  OK
+  127.0.0.1:6379> set name kit
+  QUEUED
+  127.0.0.1:6379> incr name	# 此命令不会执行，自动被忽略
+  QUEUED
+  127.0.0.1:6379> exec
+  1) OK
+  2) (error) ERR value is not an integer or out of range
+  127.0.0.1:6379> get name	# 事务依然成功
+  "kit"
+  ```
 
-
-## 缓存和数据库双写一致性问题
+# 缓存和数据库双写一致性问题
 
  https://www.cnblogs.com/rjzheng/p/9041659.html 
 
-## 缓存雪崩问题
+# 缓存雪崩问题
 
 缓存雪崩：同一时间缓存大面积失效，导致大量请求进入数据库，导致数据库崩溃；
 
@@ -461,9 +498,7 @@ Redis事务本质是一系列命令的集合；
 1. 在设置缓存的失效时间，加上一个随机值，避免集体失效；
 2. 
 
-
-
-## 缓存击穿问题 
+# 缓存击穿问题 
 
 缓存击穿：恶意用户故意模拟大量的缓存中不存在的数据，导致大量请求进入数据库，导致数据库异常；
 
@@ -483,7 +518,7 @@ Redis事务本质是一系列命令的集合；
 
 
 
-## 缓存的并发竞争问题 
+# 缓存的并发竞争问题 
 
 出现问题：多个子系统对同一个redis-server进行set一个key；
 
@@ -495,19 +530,54 @@ Redis事务本质是一系列命令的集合；
 
 多个子系统顺序设置此key，利用时间戳，每次set设置一个时间戳；
 
+# Redis高可用
+
+ https://blog.csdn.net/weixin_42711549/article/details/83061052 
+
+## Redis主从
+
+分为：
+
+- **全量同步**：slave初始化阶段，将master上所有的数据复制一份；
+- **增量同步**：初始化完成之后，master发生的写操作，都会同步到slave
+
+同步策略：
+
+- 如果**增量同步**不成功，slave可以在任何时间发起**全量同步**；
+
+- slave重启，自动发起**全量同步**
+
+  （如果多个slave宕机，重启，会导致master IO剧增，可能宕机）
+
+slave添加如下配置：
+
+```shell
+# slaveof <masterip> <masterport>
+```
+
+然后重启即可；
+
+缺陷：
+
+- 一旦主节点宕机，需要手动将slave提升为master，各个应用要更新主节点地址；（致命）
+
+## Redis哨兵
 
 
-## 分布式锁
 
- https://www.jianshu.com/p/47fd7f86c848 
 
-## 应用场景
+
+## Redis集群
+
+
+
+# Redis场景
 
 参考：
 
 <https://github.com/doGdx/CS-Notes/blob/master/docs/notes/Redis.md>
 
-## 面试
+# 面试
 
 - 为什么要用 redis / 为什么要用缓存（高性能、高并发）
 

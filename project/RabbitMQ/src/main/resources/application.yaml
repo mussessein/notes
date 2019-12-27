@@ -1,18 +1,69 @@
-# RabbitMQ配置
+server:
+  port: 8081
+  servlet:
+    context-path: /mq
+# log
 spring:
-  rabbitmq:
-    host: localhost
-    port: 5672      # 默认5672
-    username: guest
-    password: guest
-    virtual-host: / # 默认 /
-    listener:
-      simple:
-        concurrency: 10     # 消费者并发量
-        max-concurrency: 20 # 消费者最大并发量
-        prefetch: 50        # 每个消费者同一时刻拉取的消息条数
-logging:
-  level:
-    org:
-      springframework: INFO
-    com.rabbitmq: INFO
+  jmx:
+    enabled: false
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  servlet:
+    multipart:
+      max-request-size: 20MB
+      max-file-size: 10MB
+  jackson:
+    date-format: "yyyy-MM-dd HH:mm:ss"
+    time-zone: "GMT-8"
+  datasource:
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/db_rabbitmq?serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useSSL=false
+      username: root
+      password: "123456"
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      maxPoolPreparedStatementPerConnectionSize: 20
+      poolPreparedStatements: false
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      filters: stat,wall
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      filter:
+        stat:
+          enabled: true
+          db-type: mysql
+          log-slow-sql: true
+          slow-sql-millis: 5000
+        wall:
+          enabled: true
+          db-type: mysql
+          config:
+            delete-allow: false
+            drop-table-allow: false
+      web-stat-filter:
+        enabled: true
+        url-pattern: "/*"
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+  redis:
+    host: 127.0.0.1
+    port: 6379
+# mybatis
+mybatis:
+  check-config-location: true
+  mapper-locations: "classpath:mappers/*.xml"
+  type-aliases-package: "com.rabbitmq.entity"
+
+
+
+
+
+

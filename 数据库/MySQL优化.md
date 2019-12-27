@@ -774,6 +774,51 @@ ALTER TABLE 'book' ADD index Y('card');
 
 这样Extra信息，会增加Using index（覆盖索引）
 
+# 慢查询日志
+
+慢查询日志会记录—执行时长超过 `long_query_time = 10` 的sql语句；
+
+如果不是调优需要，不建议开启慢查询日志，会影响性能；
+
+### 开启慢查询
+
+配置文件开启：
+
+```properties
+# 1开启，0关闭
+slow_query_log = 1	
+# 日志文件
+slow-query-log-file = “slow.log”	
+# 阈值s
+long_query_time = 10
+# 输出到文件，TABLE表示输出到数据库
+log-output = FILE
+```
+
+MySql命令开启：
+
+```sql
+-- 开启
+mysql> set global slow_query_log=1;
+Query OK, 0 rows affected (0.09 sec)
+mysql> show variables  like '%slow_query_log%';
++---------------------+--------------------------+
+| Variable_name       | Value                    |
++---------------------+--------------------------+
+| slow_query_log      | ON                       |
+| slow_query_log_file | ADMIN-20181112T-slow.log |
++---------------------+--------------------------+
+-- 阈值s
+mysql> set global long_query_time=4;
+
+```
+
+
+
+
+
+
+
 
 
 # SQL优化的一般步骤
@@ -786,7 +831,7 @@ ALTER TABLE 'book' ADD index Y('card');
 
    通过慢查询日志定位哪些sql执行效率低下（查询结束后记录日志）
 
-   show processlist 显示当前mysql执行的线程
+   `show processlist` 显示当前mysql执行的线程
 
 3. 通过EXPLAIN分析较低SQL的执行计划
 
@@ -795,33 +840,41 @@ ALTER TABLE 'book' ADD index Y('card');
    ```sql
    > set profiling=1; -- 开启profile
    > show profiles; -- 获取执行sql的时间
-   +----------+------------+--------------------------+
-   | Query_ID | Duration   | Query                    |
-   +----------+------------+--------------------------+
-   |       10 | 0.00248673 | select * from sys_user   |
-   |       11 | 0.00251482 | select * from mail_send1 |
-   |       12 | 0.00258033 | select * from mail_send2 |
-   |       13 | 0.00018917 | select * from mail_dict  |
-   |       14 | 0.00256290 | select * from mst_dict   |
-   +----------+------------+--------------------------+
+   +----------+------------+-----------------------+
+   | Query_ID | Duration   | Query                 |
+   +----------+------------+-----------------------+
+   |        1 | 0.00054100 | show databases        |
+   |        2 | 0.02368350 | SELECT DATABASE()     |
+   |        3 | 0.00561150 | show tables           |
+   |        4 | 0.03310350 | select * from user    |
+   |        5 | 0.00008600 | explain show profiles |
+   +----------+------------+-----------------------+
    ```
 
    show profile for query 10
 
    ```sql
    > show profile for query 10; --获取执行过程和每一步的耗时
-   +--------------------------------+----------+
-   | Status                         | Duration |
-   +--------------------------------+----------+
-   | starting                       | 0.000016 |
-   | Waiting for query cache lock   | 0.000004 |
-   | init                           | 0.000014 |
-   ...
-   | Waiting for query cache lock   | 0.000003 |
-   | updating status                | 0.000002 |
-   | storing result in query cache  | 0.000005 |
-   | cleaning up                    | 0.000003 |
-   +--------------------------------+----------+
+   mysql> show profile for query 4;
+   +----------------------+----------+
+   | Status               | Duration |
+   +----------------------+----------+
+   | starting             | 0.000037 |
+   | checking permissions | 0.000004 |
+   | Opening tables       | 0.022872 |
+   | init                 | 0.000019 |
+   | System lock          | 0.000019 |
+   | optimizing           | 0.000004 |
+   | statistics           | 0.000007 |
+   | preparing            | 0.000006 |
+   | executing            | 0.000002 |
+   | Sending data         | 0.010039 |
+   | end                  | 0.000009 |
+   | query end            | 0.000008 |
+   | closing tables       | 0.000007 |
+   | freeing items        | 0.000060 |
+   | cleaning up          | 0.000012 |
+   +----------------------+----------+
    ```
 
 5. 通过trace分析优化器如何选择执行计划

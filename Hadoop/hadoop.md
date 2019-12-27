@@ -61,7 +61,7 @@
    ONBOOT="yes"
    IPADDR="172.16.125.128"
    NETMASK="255.255.255.0"
-GATEWAY="172.16.125.2"
+   GATEWAY="172.16.125.2"
    ```
 
    第二部：修改文件 /etc/sysconfig/network的内容
@@ -71,7 +71,7 @@ GATEWAY="172.16.125.2"
    ```shell
    # Created by anaconda
    GATEWAY=172.16.125.2
-DNS=172.16.125.2
+   DNS=172.16.125.2
    ```
 
    第三步：重启网络

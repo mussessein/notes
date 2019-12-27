@@ -29,7 +29,7 @@ logging:
 
 将配置文件放在classpath下，SpringBoot将自动优先使用配置文件，而非application.yml
 
-配置文件名：logback.xml，logback-spring.xml
+配置文件名：logback.xml，logback-spring.xml，SpringBoot自动识别
 
 ## configuration
 
@@ -131,6 +131,22 @@ logging:
 ```
 
 - additivity：是否向上级loger传递打印信息，默认是true；
+
+## 生成指定类日志
+
+将指定路径下（自己的工程）所有类的日志，以appender的配置方式来记录；
+
+比如：我们添加了下面的appender，就会按照之前配置的appender的方式，分类来生成日志文件到指定目录；
+
+```xml
+<logger name = "com.xxxxx">
+    <appender-ref ref="ERROR" />
+    <appender-ref ref="INFO" />
+    <appender-ref ref="WARN" />
+    <appender-ref ref="DEBUG" />
+    <appender-ref ref="TRACE" />
+</logger>
+```
 
 ## root
 
