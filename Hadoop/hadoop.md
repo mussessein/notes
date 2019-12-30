@@ -77,7 +77,7 @@
    第三步：重启网络
    
    ```shell
-service network restart
+   service network restart
    ```
 
 5. 配置ssh
