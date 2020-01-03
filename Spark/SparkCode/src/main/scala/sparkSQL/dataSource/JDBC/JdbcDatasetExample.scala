@@ -12,31 +12,39 @@ object JdbcDatasetExample {
       .config("spark.some.config.option", "some-value")
       .getOrCreate()
     import spark.implicits._
-
+    /**
+     * 读取数据的三种方法：
+     * (1)jdbc直接读出数据
+     */
     val jdbcDF = spark.read
       .format("jdbc")
-      .option("url", "jdbc:postgresql:dbserver") // jdbc url
+      .option("url", "jdbc:mysql://127.0.0.1/db") // jdbc url
       .option("dbtable", "schema.tablename") // table
       .option("user", "username") //username
       .option("password", "password") //password
       .load()
+
     /**
-     * jdbc——读出数据
+     * (2)创建连接，读出数据
      */
-    // 创建连接
     val connectionProperties = new Properties()
     connectionProperties.put("user", "root")
     connectionProperties.put("password", "123456")
-    // 读取表 到 DF
     val jdbcDF2: DataFrame = spark.read
       .jdbc("jdbc:postgresql:dbserver", "schema.tablename", connectionProperties)
-    //
+
+    /**
+     * (3)连接设置中，自定义视图
+     */
     connectionProperties.put("customSchema", "id DECIMAL(38, 0), name STRING")
     val jdbcDF3 = spark.read
       .jdbc("jdbc:postgresql:dbserver", "schema.tablename", connectionProperties)
 
     /**
-     * save数据到jdbc
+     * 写入数据的三种方法：
+     * (1)直接写入
+     * (2)创建连接，写入
+     * (3)创建连接，自定义视图
      */
     jdbcDF.write
       .format("jdbc")
@@ -49,7 +57,6 @@ object JdbcDatasetExample {
     jdbcDF2.write
       .jdbc("jdbc:postgresql:dbserver", "schema.tablename", connectionProperties)
 
-    // Specifying create table column data types on write
     jdbcDF.write
       .option("createTableColumnTypes", "name CHAR(64), comments VARCHAR(1024)")
       .jdbc("jdbc:postgresql:dbserver", "schema.tablename", connectionProperties)

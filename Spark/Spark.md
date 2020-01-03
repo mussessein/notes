@@ -2,6 +2,13 @@
 
 ## Spark角色
 
+![](./image/spark.png)
+
+### SparkContext
+
+Spark 应用程序的入口，负责调度各个运算资源，协调各个 Worker
+Node 上的 Executor
+
 ### Driver
 
 创建SparkContext（spark上下文对象）的应用程序（或者说main函数）称为Driver；
@@ -22,7 +29,19 @@
 - 负责运行Spark应用的某一个任务，结果返回给Driver；
 - 可以为RDD提供内存存储；
 
-![](image/driver.png)
+### Worker Node
+
+集群中任何可以运行Application代码的节点，运行一个或多个Executor进程
+
+## Spark Application
+
+### Stage
+
+Spark任务会根据**RDD之间的依赖关系，形成一个DAG有向无环图**，DAG会提交给DAGScheduler，DAGScheduler会把DAG划分相互依赖的多个stage，划分stage的依据就是RDD之间的宽窄依赖。**遇到宽依赖就划分stage**,每个stage包含一个或多个task任务。然后将这些task以taskSet的形式提交给**TaskScheduler运行**。 
+
+### Task
+
+一个分区对应一个Task，Task执行RDD中对应Stage中包含的算子。Task被封装好后放入Executor的线程池中执行
 
 ## Spark三种模式
 
@@ -109,12 +128,10 @@ Spark提交任务到Yarn流程：
 （1）spark-env.sh
 
 ```SHELL
-# YARN_CONF_DIR=/home/whr/workbench/hadoop/etc/hadoop
 export JAVA_HOME=/home/whr/workbench/jdk1.8
 export SCALA_HOME=/home/whr/workbench/scala
 export SPARK_MASTER_IP=178.168.3.47	# 注意，这里最好配ip，不然可能UI界面看不到Worker
-SPARK_MASTER_HOST=178.168.3.47
-SPARK_MASTER_PORT=7077
+export SPARK_MASTER_PORT=7077
 export SPARK_WORKER_CORES=2
 export SPARK_WORKER_MEMORY=1g
 ```
@@ -160,10 +177,6 @@ $ bin/spark-submit \
 --total-executor-cores 2 \
 examples/jars/spark-examples_2.11-2.3.1.jar 100
 ```
-
-图解各个步骤：
-
-![](./image/spark.png)
 
 ### WordCount
 
@@ -256,28 +269,6 @@ val accumulator: LongAccumulator = sc.longAccumulator
 
 # RDD
 
-装饰者模式
-
-JavaIO—装饰者模式的体现
-
-```java
-InputStream in = new FileInputStream("xxxxxxxx")
-Reader reader = new BufferReader(new InputStreamReader( in , "UTF-8"))
-```
-
-![](image/javaio.png)
-
-同样，RDD也运用了装饰者模式
-
-```scala
-val sc = new SparkContext(config)
-val lines: RDD[String] = sc.textFile("input")
-val words: RDD[String] = lines.flatMap(_.split(" "))
-val wordToOne: RDD[(String, Int)] = words.map((_, 1))
-val wordToSum: RDD[(String, Int)] = wordToOne.reduceByKey(_ + _)
-val result: Array[(String, Int)] = wordToSum.collect()
-```
-
 **RDD的封装逻辑**：
 
 ![](image/sparkrdd.png)
@@ -288,7 +279,7 @@ RDD（Resilient Distributed Dataset）—**弹性分布式数据集**；
 
 它将Spark的计算过程进行了抽象封装；
 
-代表着一个**不可变**（数据在处理过程中不可修改），**可分区**（将数据分区，分配给不同Executor执行，为并行计算提供前提），内部元素可以**并行计算**的集合；
+代表着一个**不可变**（数据在处理过程中不可修改，只读），**可分区**（将数据分区，分配给不同Executor执行，为并行计算提供前提），内部元素可以**并行计算**的集合；
 
 #### RDD属性
 
@@ -296,7 +287,7 @@ RDD（Resilient Distributed Dataset）—**弹性分布式数据集**；
 
 - 每个分区有一个计算函数；
 
-- RDD存在依赖关系；比如WordCount的封装逻辑，层层封装，依次依赖；（血缘）
+- RDD存在依赖关系；比如WordCount的封装逻辑，层层封装，依次依赖；（血缘 Lineage ）
 
 - 分片函数：Partitioner；有两种：基于哈希的HashPartitioner；基于范围的RangePartitioner。
 
@@ -413,82 +404,28 @@ Application-->Job-->Stage-->Task
 
 可以从UI界面看到Stage的有向无环图；
 
-## RDD缓存
+## Spark Shuffle
 
-RDD通过persist方法或cache方法（这是两个缓存算子），将计算结果缓存；
+MR 和 Spark shuffle的区别： https://blog.csdn.net/b6ecl1k7BS8O/article/details/90167129 
 
-默认persist会把数据以序列化的形式缓存在JVM的Heap中；
+### MapReduce的Shuffle概述
 
-#### 缓存级别
+![](./image/Shuffle.png)
 
-默认缓存级别是在内存中存一份；
+- Map端：输出map结果数据到 memory buffer中，但是内存总归是不够用的，当buffer中大小到达一定量（用户可以定义），会将buffer中的数据，分为多个partition，partition内数据按key进行排序，再会执行**spill**，将数据排序之后存入**文件**；
+- 这样，不断spill，生成大量的小文件，小文件会合并；
+- Reduce端：不同map下的相同的分区文件，会被拉入同一个Reduce，进行不断地merge，基于文件地多路归并排序，最终输出结果到HDFS
 
-Spark的缓存级别在StorageLevel类中定义：
+### Spark Shuffle的分类
 
-```scala
-object StorageLevel {
-  val NONE = new StorageLevel(false, false, false, false)	// 不缓存
-  val DISK_ONLY = new StorageLevel(true, false, false, false)	// 只放到磁盘
-  val DISK_ONLY_2 = new StorageLevel(true, false, false, false, 2) // _2 表示存两份
-  val MEMORY_ONLY = new StorageLevel(false, true, false, true)	// 只放到内存
-  val MEMORY_ONLY_2 = new StorageLevel(false, true, false, true, 2)	
-  val MEMORY_ONLY_SER = new StorageLevel(false, true, false, false)	//序列化
-  val MEMORY_ONLY_SER_2 = new StorageLevel(false, true, false, false, 2)	//
-  val MEMORY_AND_DISK = new StorageLevel(true, true, false, true)	// 
-  val MEMORY_AND_DISK_2 = new StorageLevel(true, true, false, true, 2)	//
-  val MEMORY_AND_DISK_SER = new StorageLevel(true, true, false, false)	//
-  val MEMORY_AND_DISK_SER_2 = new StorageLevel(true, true, false, false, 2)	//
-  val OFF_HEAP = new StorageLevel(true, true, true, false, 1)	
-    // 使用堆外内存，即OS内存，释放速度快，因为GC不一定马上释放内存
-```
+- Hash Shuffle
+- Sort Shuffle
 
-#### RDD缓存容错
 
-通过缓存，防止数据丢失或者Task失败；可以从缓存中拿到数据，重新计算
 
-```scala
-val sRDD=sc.makeRDD(List("scala"))
-val mRDD=sRDD.map((_.toString+System.currentTimeMillis)).cache	// 拼接系统时间
-scala> mRDD.collect
-res5: Array[String] = Array(scala1570090360570)	// 缓存下来的数据，是固定的
-```
 
-打印血缘关系，发现，在makeRDD和map之间多了一个CachedPartitions
 
-将中间结果，存在了Cache，可以提高效率；
 
-- 此Cache是在内存中，不会打断血缘；**内存不被认为是安全的**；
-
-```scala
-scala> mRDD.toDebugString	
-res6: String =
-(4) 
-MapPartitionsRDD[5] at map at <console>:25 [Memory Deserialized 1x Replicated]
- | CachedPartitions: 4; MemorySize: 152.0 B; ExternalBlockStoreSize: 0.0 B;DiskSize:0.0 B
- | ParallelCollectionRDD[3] at makeRDD at <console>:24 [Memory Deserialized 1x Replicated]
-```
-
-#### RDD CheckPoint
-
-检查点：持久化到磁盘操作；打断血缘
-
-持久化之后的数据，比较安全，就会删除之前的血缘；
-
-```scala
-sc.setCheckpointDir("/RDD/checkpoint")				// 设置持久化地址，这里是持久化到HDFS
-val rdd =sc.makeRDD(Array("hello","scala","hello"))	//生成RDD
-val mapRDD=rdd.map((_,1))							// map
-mapRDD.checkpoint()									// 将sRDD持久化
-val resRDD=mapRDD.reduceByKey(_+_)					// 将持久化后的RDD继续转换
-// 查看血缘关系
-scala> resRDD.toDebugString							
-res3: String =
-(4) ShuffledRDD[2] at reduceByKey at <console>:25 []
- +-(4) MapPartitionsRDD[1] at map at <console>:25 []
-    |  ReliableCheckpointRDD[3] at collect at <console>:26 []
-// 这里血缘关系已经被打断了，只记录了map和reduce
-//CheckpointRDD这里替代了makeRDD
-```
 
 ## RDD数据分区器
 
@@ -527,15 +464,128 @@ res12: Option[org.apache.spark.Partitioner] = Some(org.apache.spark.HashPartitio
 - getPartition(Key : Any)：[Int]：返回给定Key的分区编号；
 - equals( )：分区器对象的equals方法，spark内部会比较两个分区是否一样；
 
+## RDD依赖
+
+RDD在依赖方面分为两种：窄依赖(Narrow Dependencies)与宽依赖(Wide Dependencies）
+
+宽依赖称之为：Shuffle
+
+### 窄依赖
+
+两种：
+
+1. 一个RDD分区对应一个父RDD分区（map，filter）
+2. 一个RDD分区对应多个父RDD分区（partitioned）
+
+### 宽依赖
+
+1. 一个父RDD分区对应多个子RDD分区（groupByKey）
+2. 一个父RDD分区对应所有子RDD分区
+
+![](image/stage1.png)
+
+- 窄依赖之间可以并行执行；
+- 宽依赖必须所有父RDD执行完毕，才能执行子RDD；
+- 数据恢复问题：窄依赖只需要一个RDD来恢复数据，宽依赖需要多个RDD一起来恢复数据，所以，宽依赖需要适当设置**数据检查点**；
+
+## RDD缓存
+
+RDD通过persist方法或cache方法（这是两个缓存算子），将计算结果缓存；
+
+默认persist会把数据以序列化的形式缓存在JVM的Heap中；
+
+### 缓存级别
+
+默认缓存级别是在内存中存一份；
+
+Spark的缓存级别在StorageLevel类中定义：
+
+```scala
+object StorageLevel {
+  val NONE = new StorageLevel(false, false, false, false)	// 不缓存
+  val DISK_ONLY = new StorageLevel(true, false, false, false)	// 只放到磁盘
+  val DISK_ONLY_2 = new StorageLevel(true, false, false, false, 2) // _2 表示存两份
+  val MEMORY_ONLY = new StorageLevel(false, true, false, true)	// 只放到内存
+  val MEMORY_ONLY_2 = new StorageLevel(false, true, false, true, 2)	
+  val MEMORY_ONLY_SER = new StorageLevel(false, true, false, false)	//序列化
+  val MEMORY_ONLY_SER_2 = new StorageLevel(false, true, false, false, 2)	//
+  val MEMORY_AND_DISK = new StorageLevel(true, true, false, true)	// 
+  val MEMORY_AND_DISK_2 = new StorageLevel(true, true, false, true, 2)	//
+  val MEMORY_AND_DISK_SER = new StorageLevel(true, true, false, false)	//
+  val MEMORY_AND_DISK_SER_2 = new StorageLevel(true, true, false, false, 2)	//
+  val OFF_HEAP = new StorageLevel(true, true, true, false, 1)	
+    // 使用堆外内存，即OS内存，释放速度快，因为GC不一定马上释放内存
+```
+
+### 缓存容错
+
+通过缓存，防止数据丢失或者Task失败；可以从缓存中拿到数据，重新计算
+
+```scala
+val sRDD=sc.makeRDD(List("scala"))
+val mRDD=sRDD.map((_.toString+System.currentTimeMillis)).cache	// 拼接系统时间
+scala> mRDD.collect
+res5: Array[String] = Array(scala1570090360570)	// 缓存下来的数据，是固定的
+```
+
+打印血缘关系，发现，在makeRDD和map之间多了一个CachedPartitions
+
+将中间结果，存在了Cache，可以提高效率；
+
+- 此Cache是在内存中，不会打断血缘；**内存不被认为是安全的**；
+
+```scala
+scala> mRDD.toDebugString	
+res6: String =
+(4) 
+MapPartitionsRDD[5] at map at <console>:25 [Memory Deserialized 1x Replicated]
+ | CachedPartitions: 4; MemorySize: 152.0 B; ExternalBlockStoreSize: 0.0 B;DiskSize:0.0 B
+ | ParallelCollectionRDD[3] at makeRDD at <console>:24 [Memory Deserialized 1x Replicated]
+```
+
+### CheckPoint
+
+DAG中的Lineage过长，如果数据丢失，要重新计算，开销可能很大 ；容错成本太高，需要在中间，做检查点，即持久化，如果出错，可以从中间开始重新计算，不需要从头开始；
+
+**数据检查点**——本质是**持久化**（写入磁盘），打断血缘，实现容错；
+
+- 数据检查点在宽依赖上做，收益更大；
+
+持久化之后的数据，比较安全，就会删除之前的血缘；
+
+```scala
+// 设置持久化地址，这里是持久化到HDFS
+sc.setCheckpointDir("/RDD/checkpoint")				
+val rdd =sc.makeRDD(Array("hello","scala","hello"))	//生成RDD
+val mapRDD=rdd.map((_,1))							// map
+// 将sRDD持久化
+mapRDD.checkpoint()									
+val resRDD=mapRDD.reduceByKey(_+_)					// 将持久化后的RDD继续转换
+// 查看血缘关系
+scala> resRDD.toDebugString							
+res3: String =
+(4) ShuffledRDD[2] at reduceByKey at <console>:25 []
+ +-(4) MapPartitionsRDD[1] at map at <console>:25 []
+    |  ReliableCheckpointRDD[3] at collect at <console>:26 []
+// 这里血缘关系已经被打断了，只记录了map和reduce
+//CheckpointRDD这里替代了makeRDD
+```
+
 # RDD算子
 
 Spark中的所有RDD方法，称为算子。
 
+Spark中算子的执行流程：
+
+1. 输入： 数据从外部数据空间输入到Spark中，转化成RDD
+2. 运行：Spark通过算子(Transformation)，将RDD转换成新的RDD，得到想要的数据，最后通过Action算子，提交作业；
+3. 输出：程序运行结束，将数据存储到目标（HDFS，打印，Scala集和）
+
 分为：
 
 - 转换算子（Transformation）：完成作业中间过程的处理，还可以细分为两类：
-  - Value数据Transformation
-  - （Key-Value）数据Transformation
+  - Value类型Transformation
+  - Key-Value类型Transformation
 - 行动算子（Action）：会触发SparkContext提交job作业
 
 ## 转换算子Transform
@@ -692,6 +742,10 @@ dstream.foreachRDD { rdd =>
   }
 }
 ```
+
+
+
+
 
 # SparkSQL
 
@@ -881,7 +935,30 @@ Flume从netcat中读到数据，通过sink传递给SparkStreaming
    ```shell
    ./bin/flume-ng agent --conf conf --conf-file ./conf/demo/flume-pull-SparkStreaming.conf --name a1 -Dflume.root.logger=INFO,console
    ```
-   
-   
-   
-   
+# Structured Streaming
+spark2.0 将要代替DStream的structured streaming
+
+以下内容摘自 spark2.3.1官方文档；
+
+![](image/ss1.PNG)
+
+- Structured Streaming将输入数据流视为"输入表"。流上到达的每个数据项都像是将新行附加到输入表中；表的行数随着数据量的增大而增加；
+
+![](image/ss2.png)
+- 对输入的查询将生成"结果表"。 在每个触发间隔（例如，每1秒钟），新行将附加到输入表中，并最终更新结果表。 无论何时更新结果表，我们都希望将更改后的结果行写入外部接收器。
+  
+
+![](image/ss3.png)
+- 上图例子
+
+## Input Sources
+- File source：读取写入目录的文件作为数据流。 支持的文件格式为text，csv，json，orc，parquet。
+- Kafka source：从kafka中读数据
+- 
+
+
+## output mode
+参考源码
+- Append：每次只将"输入表"中的新行，写入sink，这种模式不能用于聚合；
+- Complete：每次都将"输入表"所有行，写入sink，这种方法用于聚合的查询；
+- Update：说是，不使用聚合，就跟Append一样，没太懂；

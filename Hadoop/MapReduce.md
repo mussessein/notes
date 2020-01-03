@@ -23,7 +23,7 @@
 ### Reduce task
 
 - reduce任务启动之前，一个map task完成后，就会启动线程来拉取map结果数据到相应的reduce task，不断地合并数据（shuffle），为reduce的数据输入做准备
-- 当所有的map tesk完成后，数据也拉取合并完毕后，reduce task 启动，最终将输出输出结果存入HDFS上。
+- 当所有的map task完成后，数据也拉取合并完毕后，reduce task 启动，最终将输出输出结果存入HDFS上。
 
 ### shuffle过程（Map输出到Reduce的中间过程）：
 
@@ -41,7 +41,7 @@ partition：就是为Partitioner的功能，将map结果按key值分组（分区
 
 - copy：在对Partition排序的时候，已经指定了每个Partition对应的Reduce，此时，Reduce从对应的Partition下载数据（HTTP方式），拿到Map的输出结果。
 
-  **不同Map任务下的Partition送入同一个对应的Reduce任务**
+  **不同Map任务下的相同Partition送入同一个对应的Reduce任务**
 
 - merge：也就是排序阶段（sort）。这个阶段主要进行**归并排序**，Map端传来的每个Partition，已经是排序好的，所以很适合归并排序。
 

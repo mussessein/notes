@@ -182,7 +182,7 @@ https://www.cnblogs.com/laowangc/p/8949850.html
 
 ### 读
 
-![du文件](./image/du文件.png)
+![du文件](./image/写文件.png)
 
 1. Client调用FileSystem.open()方法：
 
@@ -204,7 +204,7 @@ https://www.cnblogs.com/laowangc/p/8949850.html
 
 ### 写
 
-![写文件](./image/写文件.png)
+![写文件](./image/du文件.png)
 
 1. Client调用FileSystem的create()方法：
 

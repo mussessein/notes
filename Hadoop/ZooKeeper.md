@@ -118,7 +118,7 @@ ZooKeepe的数据节点类似linux文件系统
 3. 当发生了错误切换时， Standby节点会先保证已经从JNS上读取了所有的edit log并与命名空间合并，然后才会从Standby状态切换为Active状态。
 4. **DataNode会同时向这两个NameNode发送心跳以及块汇报信息。**这样Active NaneNode和Standby NameNode的元数据就完全同步了，一旦发生故障，就可以马上切换
 
-##### 脑裂：
+##### 脑裂
 
 - 可能出现两个NameNode同时服务于整个集群的情况，这种情况称之为脑裂。
 
