@@ -13,7 +13,7 @@ object CreateSchema {
     val ss: SparkSession = SparkSession
       .builder()
       .appName("spark sql example")
-      .config("spark.some.config.option", "some-value")
+      .master("local[*]")
       .getOrCreate()
     // 为了使得RDDS=>DataFrames
     import ss.implicits._

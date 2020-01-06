@@ -11,7 +11,7 @@ object CustomSchema {
     val spark: SparkSession = SparkSession
       .builder()
       .appName("spark sql example")
-      .config("spark.some.config.option", "some-value")
+      .master("local[*]")
       .getOrCreate()
     //
     import org.apache.spark.sql.types._
@@ -29,10 +29,10 @@ object CustomSchema {
     // 将rdd映射为Row对象
     val rowRDD = peopleRDD
       .map(_.split(","))
-      .map(attributes => Row(attributes(0), attributes(1).trim))
+    val attrRDD = rowRDD.map(attributes => Row(attributes(0), attributes(1).trim))
 
     // 通过RDD和schema创建DF对象
-    val peopleDF = spark.createDataFrame(rowRDD, schema)
+    val peopleDF = spark.createDataFrame(attrRDD, schema)
 
     // 创建局部视图
     peopleDF.createOrReplaceTempView("people")

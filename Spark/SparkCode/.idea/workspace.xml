@@ -55,13 +55,65 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="HiveExample" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="sparkSQL.dataSource.Hive.HiveExample" />
+  <component name="RunManager" selected="Application.WordCount">
+    <configuration name="CreateSchema" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="sparkSQL.schema.CreateSchema" />
       <module name="SparkCode" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="sparkSQL.dataSource.Hive.*" />
+          <option name="PATTERN" value="sparkSQL.schema.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomSchema" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="sparkSQL.schema.CustomSchema" />
+      <module name="SparkCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sparkSQL.schema.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParquetTest" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="sparkSQL.dataSource.parquetFile.ParquetTest" />
+      <module name="SparkCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sparkSQL.dataSource.parquetFile.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReflectionSchema" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="sparkSQL.schema.ReflectionSchema" />
+      <module name="SparkCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sparkSQL.schema.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WordCount" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="sparkCore.WordCount.WordCount" />
+      <module name="SparkCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sparkCore.WordCount.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -71,9 +123,16 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.HiveExample" />
+        <item itemvalue="Application.WordCount" />
+        <item itemvalue="Application.ParquetTest" />
+        <item itemvalue="Application.ReflectionSchema" />
+        <item itemvalue="Application.CustomSchema" />
+        <item itemvalue="Application.CreateSchema" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",ALPHA_SORTER_IGNORING_TEST_NODES" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -89,7 +148,8 @@
       <workItem from="1577945321063" duration="4509000" />
       <workItem from="1577950940201" duration="6646000" />
       <workItem from="1578013657453" duration="9920000" />
-      <workItem from="1578032475872" duration="3103000" />
+      <workItem from="1578032475872" duration="3702000" />
+      <workItem from="1578276538572" duration="6247000" />
     </task>
     <servers />
   </component>
