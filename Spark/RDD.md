@@ -468,17 +468,22 @@ RDD在依赖方面分为两种：窄依赖(Narrow Dependencies)与宽依赖(Wide
 - 宽依赖必须所有父RDD执行完毕，才能执行子RDD；
 - 数据恢复问题：窄依赖只需要一个RDD来恢复数据，宽依赖需要多个RDD一起来恢复数据，所以，宽依赖需要适当设置**数据检查点**；
 
-## RDD缓存
+## RDD持久化
 
 RDD通过persist方法或cache方法（这是两个缓存算子），将计算结果缓存；
 
 默认persist会把数据以序列化的形式缓存在JVM的Heap中；
 
-### 缓存级别
+### 持久化级别
 
 默认缓存级别是在内存中存一份；
 
 Spark的缓存级别在StorageLevel类中定义：
+
+- ONLY：表示仅放内存，或仅放DISK
+- _2：表示存放份数，副本数；
+- AND：优先内存，内存不足，放DISK
+- SER：序列化再存放（为了减少占用的内存）
 
 ```scala
 object StorageLevel {
@@ -506,6 +511,16 @@ object StorageLevel {
 |   MEMORY_ADN_DISK    |    高    |  中等   | 磁盘+内存 | 内存中放不下，就溢写到磁盘 |
 | MEMORY_ONLY_DISK_SER |    低    |   高    | 磁盘+内存 | 内存中放不下，就溢写到磁盘 |
 |      DISK_ONLY       |    高    |   高    |   磁盘    |                            |
+
+### cache
+
+```scala
+rdd.cache()
+def cache(): this.type = persist()
+def persist(): this.type = persist(StorageLevel.MEMORY_ONLY)
+```
+
+cache底层调用persist，并且使ONLY内存级别；
 
 ### persist
 

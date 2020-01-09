@@ -14,7 +14,10 @@ object WordCount {
      * master：ip，默认local
      * AppName：app id
      */
-    val config: SparkConf = new SparkConf().setMaster("spark://39.106.149.218:7077").setAppName("WordCount")
+    val config: SparkConf = new SparkConf()
+      /*.setMaster("spark://hadoop001:7077")*/
+      .setMaster("local[*]")
+      .setAppName("WordCount")
     /**
      * 1.通过SparkConf-创建Spark上下文对象sc
      * 2.外部创建RDD：testFile:读取文件
@@ -24,18 +27,31 @@ object WordCount {
      * 6.
      */
     val sc = new SparkContext(config)
-    val lines: RDD[String] = sc.textFile("input/word.txt")
+    sc.setLogLevel("WARN")
+    val lines: RDD[String] = sc.textFile("hdfs://hadoop001:9000/user/root/input/words.txt")
     val words: RDD[String] = lines.flatMap(line => line.split(" "))
     // lines.flatMap(_.split(" "))
     val wordToOne: RDD[(String, Int)] = words.map((_, 1))
     val wordToSum: RDD[(String, Int)] = wordToOne.reduceByKey(_ + _)
     val result: Array[(String, Int)] = wordToSum.collect()
 
-    wordToOne.foreach(println)
-    wordToSum.foreach(println)
+    //wordToOne.foreach(println)
+    //wordToSum.foreach(println)
     result.foreach(println)
+    println("=================降序排序======================")
+    val wordDESC: RDD[(Int, String)] = {
+      wordToSum.map(word => (word._2, word._1)).sortByKey(ascending = false)
+    }
+    wordDESC.collect().foreach(println)
+
+    println("=================升序排序======================")
+    val wordASC: RDD[(String, Int)] = wordToSum.sortBy(tuple => tuple._2, ascending = true)
+    wordASC.collect().foreach(println)
+
+    println("=================TOP排序======================")
+    val wordTop: Array[(Int, String)] = wordToSum.map(word => (word._2, word._1)).top(3)
+    wordTop.foreach(println)
 
     sc.stop()
-
   }
 }
