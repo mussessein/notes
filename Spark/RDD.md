@@ -73,7 +73,10 @@ RDD（Resilient Distributed Dataset）—**弹性分布式数据集**；
    }
    ```
 
-   defaultParallelism到底是多少？
+   -  seq: Seq[T]：必须是Seq的子类，比如Tuple不可以传进来；
+   - numSlices：分区
+
+   defaultParallelism是多少？
 
    ```scala
    override def defaultParallelism(): Int = {
@@ -118,6 +121,8 @@ res1: Int = 3
 #### map
 
 简单来说就是：对所map的RDD内的所有元素进行一次操作；
+
+mapValues：只对K-V对中的V进行操作；
 
 ```scala
 val rddMap = rdd.map(_ + "-a")
@@ -291,17 +296,25 @@ res26: Array[Array[Int]] = Array(Array(4, 6, 8), Array(7, 5))
 
 ### join算子
 
+```scala
+rdd1 = {(1,2),(3,4),(3,6)} rdd2={(7,8)}
+```
+
+
+
 #### join
 
-
+两个RDD进行内连接
 
 #### rightOuterJoin
+
+两个RDD进行连接，确保第一RDD的键一定存在（右外连接）
 
 
 
 #### leftOuterJoin
 
-
+两个RDD进行连接，确保第二RDD的键一定存在（左外连接）
 
 ## Action
 
@@ -326,9 +339,18 @@ def collect(): Array[T] = withScope {
 }
 ```
 
+collectAsMap：以Map形式返回Map((1 -> 3), (2 -> 4))
 
+#### sum
 
+求和
 
+```scala
+// 对key求和
+sum(_1)
+// 对value求和
+sum(_2)
+```
 
 ### foreach算子
 
@@ -484,6 +506,15 @@ object StorageLevel {
 |   MEMORY_ADN_DISK    |    高    |  中等   | 磁盘+内存 | 内存中放不下，就溢写到磁盘 |
 | MEMORY_ONLY_DISK_SER |    低    |   高    | 磁盘+内存 | 内存中放不下，就溢写到磁盘 |
 |      DISK_ONLY       |    高    |   高    |   磁盘    |                            |
+
+### persist
+
+```scala
+val rdd =
+rdd.persist(StorageLevel.MEMORY_ONLY)
+```
+
+
 
 ### 缓存容错
 
