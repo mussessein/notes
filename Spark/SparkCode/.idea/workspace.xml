@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="819bc8ea-c664-4818-ab28-7373f730dfc1" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Package Object" />
+        <option value="FxmlFile" />
+        <option value="Scala Class" />
+        <option value="Scala Object" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1VpLcuqTtHEmLyLkk5GLr38YTxe" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/scala/examples/dataToHbase" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.47816092" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\whr\Desktop\Spark\SparkCode\src\main\scala\examples\dataToHbase" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\whr\Desktop\Spark\SparkCode\input" />
+      <recent name="C:\Users\Administrator\Desktop\Spark\SparkCode\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.WordCountWindow">
+    <configuration name="CheckPointExample" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="sparkStreaming.SSCheckPoint.CheckPointExample" />
+      <module name="SparkCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sparkStreaming.SSCheckPoint.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CsvExample" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="sparkSQL.dataSource.csv.CsvExample" />
+      <module name="SparkCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sparkSQL.dataSource.csv.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ForeachRDDExample" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="sparkStreaming.SSOutput.ForeachRDDExample" />
+      <module name="SparkCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sparkStreaming.SSOutput.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WordCount" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="sparkStreaming.WordCount" />
+      <module name="SparkCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sparkStreaming.SSOutput.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WordCountWindow" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="sparkStreaming.window.WordCountWindow" />
+      <module name="SparkCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sparkStreaming.window.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.WordCountWindow" />
+        <item itemvalue="Application.CheckPointExample" />
+        <item itemvalue="Application.WordCount" />
+        <item itemvalue="Application.ForeachRDDExample" />
+        <item itemvalue="Application.CsvExample" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",ALPHA_SORTER_IGNORING_TEST_NODES" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="819bc8ea-c664-4818-ab28-7373f730dfc1" name="Default Changelist" comment="" />
+      <created>1577945172250</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1577945172250</updated>
+      <workItem from="1577945173468" duration="121000" />
+      <workItem from="1577945321063" duration="4509000" />
+      <workItem from="1577950940201" duration="6646000" />
+      <workItem from="1578013657453" duration="9920000" />
+      <workItem from="1578032475872" duration="3702000" />
+      <workItem from="1578276538572" duration="6247000" />
+      <workItem from="1578568200075" duration="4514000" />
+      <workItem from="1578621497949" duration="157000" />
+      <workItem from="1578625460759" duration="2923000" />
+      <workItem from="1578641172431" duration="1039000" />
+      <workItem from="1578643477385" duration="4259000" />
+      <workItem from="1578654133097" duration="7094000" />
+      <workItem from="1578718227542" duration="14405000" />
+      <workItem from="1578810376964" duration="12436000" />
+      <workItem from="1578831301973" duration="5585000" />
+      <workItem from="1578912330405" duration="1646000" />
+      <workItem from="1578914493149" duration="593000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/sparkSQL/dataSource/JDBC/JdbcExample.scala</url>
+          <line>33</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

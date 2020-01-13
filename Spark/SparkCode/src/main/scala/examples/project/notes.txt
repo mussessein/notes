@@ -1,0 +1,19 @@
+项目架构：
+一. 数据收集
+    定制化收集数据：
+    SDK + Nginx + Flume + HDFS
+二. 数据处理
+    ETL（根据实际业务，具体处理）
+    1. ETL（MR）
+        HDFS -> MR -> HBase
+    2. 新增用户数据统计分析
+        HBase -> MR -> MySQL
+    3. Hourly分析（每小时分析）
+        HBase -> Hive -> HiveQL
+三. 分析结果
+    MySQL -> SpringBoot -> ECharts
+
+
+SparkCore 与 HBase交互
+1. 从Hbase读取数据 ---> ReadHBaseTableDataSpark$
+2. 向Hbase写数据   ---> WriteDataToHBaseSpark$
