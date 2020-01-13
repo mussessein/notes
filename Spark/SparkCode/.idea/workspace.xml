@@ -33,14 +33,17 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.47816092" />
-    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\Spark\SparkCode\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -55,20 +58,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.WordCount">
-    <configuration name="CreateSchema" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="sparkSQL.schema.CreateSchema" />
-      <module name="SparkCode" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sparkSQL.schema.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.RDDsDataSets">
     <configuration name="CustomSchema" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="sparkSQL.schema.CustomSchema" />
       <module name="SparkCode" />
@@ -88,6 +78,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="sparkSQL.dataSource.parquetFile.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RDDsDataSets" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="sparkSQL.dataFrame.RDDsDataSets" />
+      <module name="SparkCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sparkSQL.dataFrame.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -123,11 +126,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.RDDsDataSets" />
         <item itemvalue="Application.WordCount" />
         <item itemvalue="Application.ParquetTest" />
         <item itemvalue="Application.ReflectionSchema" />
         <item itemvalue="Application.CustomSchema" />
-        <item itemvalue="Application.CreateSchema" />
       </list>
     </recent_temporary>
   </component>
@@ -151,6 +154,10 @@
       <workItem from="1578032475872" duration="3702000" />
       <workItem from="1578276538572" duration="6247000" />
       <workItem from="1578568200075" duration="4514000" />
+      <workItem from="1578621497949" duration="157000" />
+      <workItem from="1578625460759" duration="2923000" />
+      <workItem from="1578641172431" duration="1039000" />
+      <workItem from="1578643477385" duration="4259000" />
     </task>
     <servers />
   </component>

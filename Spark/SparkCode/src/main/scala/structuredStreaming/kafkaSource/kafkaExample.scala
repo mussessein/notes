@@ -1,7 +1,6 @@
 package structuredStreaming.kafkaSource
 
 import org.apache.spark.sql.{DataFrame, SparkSession}
-import sparkSQL.dataSets.RDDsDataSets.spark
 
 /**
  * structured-streaming-kafka-2.3.1官方文档：

@@ -15,16 +15,15 @@ object HiveExample {
     // println(warehouseLocation)
     val spark: SparkSession = SparkSession
       .builder()
+      .config("spark.sql.warehouse.dir", warehouseLocation)
       .appName("Hive example")
-      .config("spark.some.config.option", "some-value")
+      .master("local[*]")
       .getOrCreate()
-    import spark.implicits._
-    import spark.sql
 
-    sql("CREATE TABLE IF NOT EXISTS src (key INT, value STRING) USING hive")
-    sql("LOAD DATA LOCAL INPATH 'input/hive_db/kv1.txt' INTO TABLE src")
+    spark.sql("create table dept_partition(deptno int,dname string, loc string) partitioned by (month string) row format delimited fields terminated by '\\t'")
+    spark.sql("LOAD DATA LOCAL INPATH 'input/hive_db/kv1.txt' INTO TABLE src")
     // 直接使用
-    sql("SELECT * FROM src").show()
+    spark.sql("SELECT * FROM src").show()
     // +---+-------+
     // |key|  value|
     // +---+-------+
@@ -33,6 +32,6 @@ object HiveExample {
     // |311|val_311|
     // ...
     // 结果集为 DataFrame
-    val sqlDF: DataFrame = sql("SELECT key, value FROM src WHERE key < 10 ORDER BY key")
+    val sqlDF: DataFrame = spark.sql("SELECT key, value FROM src WHERE key < 10 ORDER BY key")
   }
 }

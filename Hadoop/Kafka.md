@@ -42,15 +42,21 @@ Subscriber（订阅者）：在数据管道一端响应事件的应用程序。
 
 #### Topic
 
-​	即：逻辑概念上的消息；一个Topic可分为多个Partition分区，每个Partition又会进行备份（备份到别的Broker上）；
+即：逻辑概念上的消息；一个Topic可分为多个Partition分区，每个Partition又会进行备份（备份到别的Broker上）；
 
 #### Partition
+
+生产者发送消息，只会发送到topic的其中一个分区内！！
+
+但是会经过同步到不同节点的同一个partition的副本下！！
+
+也就意味着，一个topic下的，某条消息，只会被同一组内的某一个消费者消费！
 
 - **分区内的数据是有序的，维护着offset**
 
 - 分区越多，并行处理数就越多。通常的建议是主机数x2，例如如果集群中有3台服务器，则对每个主题可以创建6个分区。
 
-- 当消息被写入分区后，就不可变了，无法再进行修改。除非重建主题，修改数据后重新发送。
+- 当消息被写入分区后，就**不可变**了，无法再进行修改。除非重建主题，修改数据后重新发送。
 
 - 当没有key时，数据会被发往主题的任意一个分区；当有key时，相同key的数据会被发往同一个分区。
 
@@ -188,10 +194,10 @@ Partition中存储的消息即Message
 
 LEO：每个副本的最大offset；针对每一个副本而言；
 
-高水位（HW）：每个Partition的所有副本的最小LEO，即最小offset；HW是针对整个Partition而言的。
+高水位（HW）：同一个Partition的所有副本的最小LEO，即最小offset；HW是针对整个Partition而言的。
 
 - 消费者只能看到HW之前的数据；
-- 数据一致性，只保证数据一致，不保证数据不会重复；
+- 数据一致性，只保证数据一致，不保证数据不会重复，或丢失；
 
 ![1570346977863](./image/1570346977863.png)
 
@@ -352,6 +358,16 @@ Topic:first	PartitionCount:2	ReplicationFactor:2	Configs:
 	Topic: first	Partition: 0	Leader: 2	Replicas: 2,1	Isr: 2,1
 	Topic: first	Partition: 1	Leader: 0	Replicas: 0,2	Isr: 0,2
 ```
+
+#### 查看分区offset
+
+```shell
+$ kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list localhost:9092 --topic test
+test:0:16
+test:1:18
+```
+
+
 
 #### 删除topic
 

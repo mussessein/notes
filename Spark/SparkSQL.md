@@ -1,3 +1,5 @@
+官方文档： http://spark.apache.org/docs/latest/sql-data-sources-hive-tables.html 
+
 # SparkSQL
 
 早期统计数据的方式：MapReduce、SQL

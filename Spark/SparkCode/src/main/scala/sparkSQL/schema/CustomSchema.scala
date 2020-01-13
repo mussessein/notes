@@ -1,7 +1,6 @@
 package sparkSQL.schema
 
 import org.apache.spark.sql.{DataFrame, Row, SparkSession}
-import sparkSQL.dataSets.RDDsDataSets.spark
 
 /**
  * 通过函数自定义schema
