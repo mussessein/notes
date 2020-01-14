@@ -4,7 +4,7 @@
 
 **HBase的表数据存储在hdfs文件系统中**
 
-## 配置
+## 分布式配置
 
 1. hbase-env.sh
 
@@ -58,6 +58,28 @@
    slave1
    slave2
    ```
+
+### 伪分布式
+
+hbase-env.sh必须使用自带的zk
+
+因为：如果是单机模式，zookeeper启动的状态为`standalone`
+
+而hbase需要在zookeeper中创建 /hbase/master 节点，必须要求zookeeper的状态是master
+
+hbase将无法创建成功；
+
+所以：
+
+hbase-env.sh的配置：
+
+```shell
+export HBASE_MANAGES_ZK=true
+```
+
+并且：单机模式下，是没有HRegonServer的，只有HMaster
+
+关闭zookeeper，直接启动hbase
 
 ### 启动
 

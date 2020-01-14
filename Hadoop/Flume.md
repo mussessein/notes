@@ -19,13 +19,12 @@ https://www.cnblogs.com/qingyunzong/p/8994494.html
 
 #### Source
 
-https://www.cnblogs.com/qingyunzong/p/8995554.html
-
 负责接收数据到Flume Agent组件中；
 
 Source可以处理各种格式，类型的日志：Avro，Thrift，JMS，HTTP，Exec等等
 
 - Avro Source
+- Netcat Source
 - Thrift Source
 - Exec Source
 - JMS Source
@@ -36,7 +35,7 @@ Source可以处理各种格式，类型的日志：Avro，Thrift，JMS，HTTP，
 
 **Channel线程安全，可以同时处理多个Source的写入操作和多个Sink的读取操作；**
 
-两种Channel：Memory Channel 和File Channel（Kafka Channel）
+主要两种Channel：
 
 - Memory Channel：将事件写入内存，速度快，但是数据会因程序死亡，机器宕机而丢失；
 - File Channel：将事件写入磁盘，速度慢，但是数据不会丢失；
@@ -45,11 +44,16 @@ Source可以处理各种格式，类型的日志：Avro，Thrift，JMS，HTTP，
 
 不断的轮讯Channel中的事件，批量的移除他们，并将这些事件存储到指定的存储系统或发送至一个新的Agent;
 
-- Sink是完全事务性的;
+- Sink是**完全事务性**的;
 - Sink的一整个事务的逻辑：将事件从Channel中读取出来，发送给Sink的目标位置，当目标，接受完成，Sink将Channel中的事件移除；
 - 详细看<Flume事务>
 
 Sink组件的目的地：HDFS，Logger，Avro，Thrift，HBase
+
+- HDFS Sink
+- Kafka Sink
+- Avro Sink
+- HBase Sink
 
 ### Agent内部原理
 
