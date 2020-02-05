@@ -1,0 +1,9 @@
+多线程的问题：
+1. 制造线程屏障：控制线程执行顺序；
+    （1）CountDownLatch；
+        ① 如果是一次顺序执行，只需要用到一次CountDownLatch；
+        ② 如果是不断循环顺序执行，就需要不断地new CountDownLatch来刷新值；并且需要CyclicBarrier来设置一个栅栏；
+    （2）设置一个Object，然后用synchronized，加以布尔变量判断，配置wait()，notifyAll()方法；
+    （3）volatile：设置某一个变量为volatile，让线程一直判断此变量（自旋），是否能够向下执行；
+        while 判断volatile变量，不满足，使用yield，防止无脑占用cpu；
+        这种方法，不进行线程阻塞，让线程自旋；
