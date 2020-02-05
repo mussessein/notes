@@ -14,7 +14,7 @@ public class MyBlockingQueue<T> {
     private final Lock lock = new ReentrantLock();
     private final Condition Full = lock.newCondition();
     private final Condition Empty = lock.newCondition();
-    private List<T> queue = new LinkedList<>();
+    private List<T> queue = new LinkedList();
 
     public MyBlockingQueue(int limit) {
         this.limit = limit;

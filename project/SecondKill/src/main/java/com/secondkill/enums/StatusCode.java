@@ -9,7 +9,6 @@ public enum StatusCode {
     Fail(-1,"失败"),
     InvalidParams(201,"非法的参数!"),
     UserNotLogin(202,"用户没登录"),
-
     ;
 
     private Integer code;

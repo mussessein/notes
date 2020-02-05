@@ -205,8 +205,8 @@ public class KillService implements IKillService {
     }
 
 
-    @Autowired
-    private CuratorFramework curatorFramework;
+//    @Autowired
+//    private CuratorFramework curatorFramework;
 
     private static final String pathPrefix="/zkLock/";
 
@@ -217,13 +217,13 @@ public class KillService implements IKillService {
      * @return
      * @throws Exception
      */
-    @Override
+   /* @Override
     public Boolean killItemV4(Integer killId, Integer userId) throws Exception {
         Boolean result=false;
-    /**
+    *//**
      * killID+userID保证节点的唯一性
      * 保证了逻辑上，一个人只能抢购一件商品;
-     */
+     *//*
         InterProcessMutex mutex=new InterProcessMutex(curatorFramework,pathPrefix+killId+userId+"-lock");
         try {
             //     获取锁：
@@ -254,5 +254,5 @@ public class KillService implements IKillService {
         return result;
     }
 
-
+*/
 }

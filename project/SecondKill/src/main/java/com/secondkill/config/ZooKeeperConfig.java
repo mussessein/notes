@@ -15,7 +15,7 @@ import org.springframework.core.env.Environment;
  * @Author:debug (SteadyJack)
  * @Date: 2019/7/2 14:38
  **/
-@Configuration
+//@Configuration
 public class ZooKeeperConfig {
 
     @Autowired

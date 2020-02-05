@@ -6,6 +6,7 @@ import java.util.Arrays;
  * @author whr
  * @date 2019/12/23 10:32
  * 归并排序
+ * 时间复杂度：O(nlogn),空间复杂度O(n)
  * 1. 分段：不断二分
  * 2. 排序，需要额外空间，存放中间结果
  */

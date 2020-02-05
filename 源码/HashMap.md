@@ -30,7 +30,9 @@ table表示一个Node数组。table的每一个格子横向延伸，表示一个
 
 #### capacity和size
 
-capacity即table的大小，也就是桶的个数。（**桶的总数总是2的幂，这是由于临界值算法tableSizeFor得到的）**
+capacity即table的大小，也就是桶的个数，即：数组长度；
+
+（**桶的总数总是2的幂，这是由于临界值算法tableSizeFor得到的）**
 
 size就是所有的结点的总和，即图中的所有格子（K-V对的数量）
 
@@ -41,8 +43,6 @@ size就是所有的结点的总和，即图中的所有格子（K-V对的数量�
 #### threshold（门槛）
 
 当size > threshold，则进行resize操作（扩容）
-
-
 
 ## HashMap的属性和构造方法：
 
@@ -101,13 +101,13 @@ public HashMap(int initialCapacity, float loadFactor) {
 // 返回传入的容量的最接近的一个2的正数次幂数:
 // 比如initialCapacity=10,则返回16
 static final int tableSizeFor(int cap) {
-    int n = cap - 1;
-    n |= n >>> 1;	// 位或操作
-    n |= n >>> 2;
-    n |= n >>> 4;
-    n |= n >>> 8;
-    n |= n >>> 16;
-    return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+    int n = cap - 1;	// 0100
+    n |= n >>> 1;	// 1101
+    n |= n >>> 2;	// 1111
+    n |= n >>> 4;	// 1111
+    n |= n >>> 8;	// 1111
+    n |= n >>> 16;	// 1111
+    return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;// 00010000
 }
 ```
 
@@ -126,10 +126,6 @@ static final int tableSizeFor(int cap) {
 现在：因为length总是2的n次方，那么（length-1）&hash值 就可以直接得到桶的索引。提高了计算效率。
 
 本质：&运算比%运算块。
-
-**可以看下面的图解Hash算法**。
-
-
 
 ## Hash算法
 
@@ -162,7 +158,7 @@ static final int hash(Object key) {
 
 ![hashmap](/home/whr/Desktop/notes/Java/image/hashmap.png)
 
-## HashMap内部的数据结构的构造
+## 内部类
 
 - HashMap的链表的构造：Node内部类
 
@@ -241,7 +237,7 @@ static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
 
 
 
-## HashMap的常用方法源码：
+## 常用方法
 
 tableSizeFor、get、put、size、containsKey、remove、
 
@@ -249,17 +245,17 @@ tableSizeFor、get、put、size、containsKey、remove、
 
 此方法是计算比当前容量大的且最小的2的整数次幂数。（全部使用位运算计算，效率高）
 
-比如cap=10，返回16。
+比如传入cap=10，返回16（0001 0000）。
 
 ```java
 static final int tableSizeFor(int cap) {
-    int n = cap - 1;
-    n |= n >>> 1;
-    n |= n >>> 2;
-    n |= n >>> 4;
-    n |= n >>> 8;
-    n |= n >>> 16;
-    return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+    int n = cap - 1;	// 0100
+    n |= n >>> 1;	// 1101
+    n |= n >>> 2;	// 1111
+    n |= n >>> 4;	// 1111
+    n |= n >>> 8;	// 1111
+    n |= n >>> 16;	// 1111
+    return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;// 00010000
 }
 ```
 
@@ -268,26 +264,29 @@ static final int tableSizeFor(int cap) {
 ```java
 public V get(Object key) {
     Node<K,V> e;
+    // 返回找到的节点的value
     return (e = getNode(hash(key), key)) == null ? null : e.value;
 }
-// 
+// 返回找到的节点
 final Node<K,V> getNode(int hash, Object key) {
     // first即桶
     Node<K,V>[] tab; Node<K,V> first, e; int n; K k;
-    // ①赋值，基础判断，并且找到桶的位置
+    /** ① 赋值，基础判断，并且找到桶的位置
+     * 这里的tab[(n - 1) & hash])即：找到k的桶位置（取代了 取模的方式）
+     */
     if ((tab = table) != null && (n = tab.length) > 0 &&
         (first = tab[(n - 1) & hash]) != null) {
-        // ②判断第一个结点是不是要找的
-        if (first.hash == hash && // 
+        // ② 判断第一个结点是不是要找的,是：直接返回此节点
+        if (first.hash == hash &&
             ((k = first.key) == key || (key != null && key.equals(k))))
             return first;
-        // ③继续判断下一个结点
+        // ③ 继续判断下一个结点；e为当前判断的节点
         if ((e = first.next) != null) {
-            // ④判断这个桶是不是红黑树
+            // ④ 判断这个桶是不是红黑树
             if (first instanceof TreeNode) 
                 // 如果是，通过红黑树的遍历方法，找key
                 return ((TreeNode<K,V>)first).getTreeNode(hash, key);
-            // ⑤不是红黑树
+            // ⑤ 不是红黑树，不断判断下一个节点
             do {
                 // 判断结点的hash和key是否满足，遍历链表
                 if (e.hash == hash &&
@@ -314,10 +313,11 @@ hash：通过hash算法得到的hash值
 public V put(K key, V value) {
     return putVal(hash(key), key, value, false, true);
 }
+// onlyIfAbsent = true 不会覆盖已存在的值
 final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
                boolean evict) {
     Node<K,V>[] tab; Node<K,V> p; int n, i;
-    // ①table为空或者length=0，就resize
+    // ① table为空或者length=0，就resize（扩容或初始化）
     if ((tab = table) == null || (n = tab.length) == 0)
         n = (tab = resize()).length;
     // ②根据key的hash计算table的中索引位置（桶的位置）
@@ -335,9 +335,9 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
             // 如果是，调用红黑树put方法
             e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
         else { 
-            // 3.不是红黑树，就是普通链表，每一个结点为一个bin
+            // 3.不是红黑树，就是普通链表，每一个结点为一个bin，
             for (int binCount = 0; ; ++binCount) {
-                // 遍历找到最后一个节点，然后在后面新建结点，并判断如果节点数>8，就转化为红黑树
+                // 遍历找到最后一个节点，然后在后面新建结点，并判断如果节点数>=8，就转化为红黑树
                 if ((e = p.next) == null) {
                     p.next = newNode(hash, key, value, null);
                     if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
@@ -354,23 +354,26 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
         }
         // 4.更新已存在的key的value
         if (e != null) { 
-            V oldValue = e.value;
+            V oldValue = e.value;	// 保存旧值
             if (!onlyIfAbsent || oldValue == null)
-                e.value = value;
+                e.value = value;	// 覆盖新值
             afterNodeAccess(e);		// 这里是空方法，为LinkedHashMap提供方便的
             return oldValue;
         }
     }
+    // 记录修改次数
     ++modCount;
     // size超过阀值，扩容
     if (++size > threshold)
         resize();
-    afterNodeInsertion(evict);
+    afterNodeInsertion(evict);	// 空方法
     return null;
 }
 ```
 
 #### resize方法：
+
+用于初始化（第一次创建，table并没有初始化），或者扩容
 
 ```java
 final Node<K,V>[] resize() {
@@ -378,10 +381,11 @@ final Node<K,V>[] resize() {
     Node<K,V>[] oldTab = table;
     int oldCap = (oldTab == null) ? 0 : oldTab.length;
     // threshold：临界值,当实际大小超过threshold,就会扩容
-    int oldThr = threshold;
+    int oldThr = threshold;	// 初始容量为8
     int newCap, newThr = 0;
     if (oldCap > 0) {
-        // 达到最大容量
+        // 扩容前已经达到最大容量
+        // 直接修改threshold阈值为最大，以后此hashmap就不会再扩容了
         if (oldCap >= MAXIMUM_CAPACITY) {
             threshold = Integer.MAX_VALUE;
             return oldTab;
@@ -391,9 +395,12 @@ final Node<K,V>[] resize() {
                  oldCap >= DEFAULT_INITIAL_CAPACITY)
             newThr = oldThr << 1; 
     }
+    // oldCap<=0 就是还没初始化
     else if (oldThr > 0) 
-        newCap = oldThr;
-    else {               
+        newCap = oldThr;	// 这里初始化table为8
+    // oldCap<=0，oldThr阈值<=0
+    else {
+        // 使用默认的初始大小 16
         newCap = DEFAULT_INITIAL_CAPACITY;
         newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
     }
@@ -453,11 +460,7 @@ final Node<K,V>[] resize() {
 }
 ```
 
-
-
-
-
-#### HashMap的三个空方法
+#### 三个空方法
 
 ```java
 void afterNodeAccess(Node<K,V> p) { }

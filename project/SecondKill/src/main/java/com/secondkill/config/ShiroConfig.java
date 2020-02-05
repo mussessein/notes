@@ -37,10 +37,10 @@ public class ShiroConfig {
         bean.setUnauthorizedUrl("/unauth");
 
         Map<String, String> filterChainDefinitionMap=new HashMap<>();
+        // anon：不拦截的url
         filterChainDefinitionMap.put("/to/login","anon");
-
         filterChainDefinitionMap.put("/**","anon");
-
+        // authc：需要拦截url
         filterChainDefinitionMap.put("/kill/execute/","authc");
         filterChainDefinitionMap.put("/item/detail/*","authc");
 
